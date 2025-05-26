@@ -205,13 +205,14 @@
         }
 
         .menu-toggle {
+            /* Ajustes para o botão de menu mobile */
             display: none; /* Esconde o botão em telas maiores (controlado por md:hidden no HTML) */
             background: none;
             border: none;
-            font-size: 2.2rem;
+            font-size: 2.2rem; /* Ligeiramente maior */
             color: white;
             cursor: pointer;
-            padding: 0.75rem;
+            padding: 0.75rem; /* Mais preenchimento */
             border-radius: 0.5rem;
             transition: background-color 0.3s ease;
         }
@@ -221,33 +222,19 @@
         }
 
         /* Estilos para os dropdowns no desktop */
-        .dropdown-container {
-            position: relative;
-        }
-
-        .dropdown-trigger {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding: 0.5rem 0; /* Ajuste para melhor espaçamento no link principal */
-        }
-
-        .dropdown-menu {
+        .group .dropdown-menu {
             position: absolute;
             display: none; /* Escondido por padrão */
             background-color: var(--dark-bg);
+            /*text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20;*/
+            min-width: 160px; /* Largura mínima para o dropdown */
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border-radius: 0.5rem;
-            overflow: hidden;
-            min-width: 160px;
-            top: 100%; /* Posiciona abaixo do trigger */
-            left: 0;
-            z-index: 20;
-            margin-top: 0.5rem; /* Espaçamento entre o trigger e o menu */
+            overflow: hidden; /* Garante que os cantos arredondados funcionem */
         }
 
-        .dropdown-container:hover .dropdown-menu {
-            display: block; /* Mostra no hover do container */
+        .group:hover .dropdown-menu {
+            display: block; /* Mostra no hover do pai */
         }
 
         .dropdown-menu a {
@@ -255,12 +242,11 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            text-align: left;
-            transition: background-color 0.3s ease;
+            text-align: left; /* Alinha o texto à esquerda nos itens do dropdown */
         }
 
         .dropdown-menu a:hover {
-            background-color: var(--light-dark-bg);
+            background-color: var(--light-dark-bg); /* Cor de fundo ao passar o mouse nos itens */
         }
 
         /* Responsividade geral */
@@ -329,8 +315,9 @@
             }
 
             /* Estilos para os dropdowns no mobile */
-            .dropdown-container .dropdown-menu {
-                display: none; /* Esconde por padrão no mobile */
+            #navbar ul.active .group .dropdown-menu {
+                display: flex; /* Mostra os dropdowns no mobile */
+                flex-direction: column;
                 position: static; /* Remove o posicionamento absoluto */
                 width: auto; /* Remove a largura fixa */
                 background-color: transparent; /* Fundo transparente */
@@ -339,16 +326,8 @@
                 margin-top: 0.5rem;
             }
 
-            /* Quando o menu mobile está ativo, mostra os dropdowns */
-            #navbar ul.active .dropdown-container .dropdown-menu {
-                display: flex; /* Mostra os dropdowns no mobile */
-                flex-direction: column;
-            }
-
-            /* Ajusta o padding para o trigger do dropdown no mobile */
-            .dropdown-container .dropdown-trigger {
-                padding: 0.5rem 1rem;
-                justify-content: center; /* Centraliza o texto do trigger */
+            #navbar ul.active .group > a {
+                padding: 0.5rem 1rem; /* Ajusta o padding do item pai do dropdown */
             }
         }
 
@@ -594,27 +573,51 @@
     </footer>
 
     <script>
-        // JavaScript para o menu mobile
+        // JavaScript para o menu mobile e dropdowns
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.querySelector('.menu-toggle');
             const navUl = document.querySelector('#navbar ul');
+            const dropdownTriggers = document.querySelectorAll('.dropdown-container .dropdown-trigger');
 
+            // Toggle do menu mobile
             if (menuToggle && navUl) {
                 menuToggle.addEventListener('click', () => {
                     const isExpanded = navUl.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isExpanded); // Adiciona/atualiza aria-expanded
+                    menuToggle.setAttribute('aria-expanded', isExpanded);
                 });
 
-                // Fechar o menu ao clicar em um link (apenas em mobile)
+                // Fechar o menu mobile ao clicar em um link
                 navUl.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
                         if (window.innerWidth <= 768) {
                             navUl.classList.remove('active');
-                            menuToggle.setAttribute('aria-expanded', 'false'); // Atualiza aria-expanded
+                            menuToggle.setAttribute('aria-expanded', 'false');
                         }
                     });
                 });
             }
+
+            // Lógica para dropdowns no mobile (expansão ao clicar no trigger)
+            dropdownTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) { // Apenas em telas pequenas
+                        const parentLi = trigger.closest('.dropdown-container');
+                        const dropdownMenu = parentLi.querySelector('.dropdown-menu');
+                        if (dropdownMenu) {
+                            dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+                            // Gira a seta do dropdown no mobile
+                            const svg = trigger.querySelector('svg');
+                            if (svg) {
+                                if (dropdownMenu.style.display === 'flex') {
+                                    svg.classList.add('rotate-180');
+                                } else {
+                                    svg.classList.remove('rotate-180');
+                                }
+                            }
+                        }
+                    }
+                });
+            });
 
             // Injetar imagens na galeria da Era de Ouro
             const goldenAgeGallery = document.getElementById('gallery-golden-age');
