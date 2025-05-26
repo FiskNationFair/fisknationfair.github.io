@@ -449,6 +449,13 @@
                     </ul>
                 </li>
             </ul>
+            <div class="flex items-center space-x-4">
+                <select id="language-switcher" class="bg-dark-bg text-white border border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-accent-blue">
+                    <option value="pt" selected>Português</option>
+                    <option value="en">English</option>
+                </select>
+                <button class="menu-toggle md:hidden" aria-label="Abrir menu" aria-expanded="false">☰</button>
+            </div>
             <button class="menu-toggle md:hidden" aria-label="Abrir menu" aria-expanded="false">☰</button>
         </nav>
     </header>
@@ -633,6 +640,241 @@
     </footer>
 
     <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbarUl = document.querySelector('#navbar ul');
+
+        menuToggle.addEventListener('click', () => {
+            navbarUl.classList.toggle('active');
+            const isExpanded = navbarUl.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+
+        // Close mobile menu when a link is clicked
+        navbarUl.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navbarUl.classList.contains('active')) {
+                    navbarUl.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Mobile dropdown toggle
+        document.querySelectorAll('.dropdown-container').forEach(dropdown => {
+            const trigger = dropdown.querySelector('.dropdown-trigger');
+            const menu = dropdown.querySelector('.dropdown-menu');
+
+            // On desktop, hover handles it. On mobile, we need a click.
+            if (window.innerWidth <= 768) {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default link behavior if any
+                    // Toggle visibility of the dropdown menu
+                    if (menu.style.display === 'flex') {
+                        menu.style.display = 'none';
+                    } else {
+                        menu.style.display = 'flex';
+                    }
+                });
+            }
+        });
+
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling down 300px
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Multilingual support
+        const translations = {
+            pt: {
+                pageTitle: "A História do Hip-Hop: Das Ruas para o Mundo",
+                hipHopJourney: "Hip-Hop: A Jornada",
+                fundamentals: "Fundamentos",
+                origins: "Origens",
+                fourElements: "4 Elementos",
+                eras: "Eras",
+                goldenAge: "Era de Ouro",
+                years2000s: "Anos 2000",
+                cultureImpact: "Cultura & Impacto",
+                fashion: "Moda",
+                gangsSociety: "Gangues & Sociedade",
+                globalImpact: "Impacto Global",
+                regionalFuture: "Regional & Futuro",
+                hipHopBrazil: "Hip-Hop no Brasil",
+                legacy: "Legado",
+                videoSupport: "Seu navegador não suporta a tag de vídeo.",
+                heroTitle: "Bem-vindos à História do Hip-Hop",
+                heroSubtitle: "Das ruas do Bronx para o mundo: uma revolução cultural.",
+                discoverMore: "Descubra Mais",
+                originsTitle: "As Origens: O Berço no Bronx (Anos 70)",
+                originsText1: "O Hip-Hop não é apenas um gênero musical, mas uma cultura vibrante que nasceu das cinzas de um Bronx em crise no final dos anos 1970. Em meio a desafios sociais e econômicos, com bairros marcados pelo abandono e pela violência, jovens criativos encontraram nas festas de rua — as lendárias **Block Parties** — um refúgio e uma poderosa forma de expressão. Essas celebrações comunitárias, muitas vezes realizadas em parques ou edifícios abandonados, eram o palco para a inovação e o surgimento de uma nova voz.",
+                koolHercCaption: "DJ Kool Herc, considerado o \"pai do Hip-Hop\", isolando os \"breaks\" das músicas para os dançarinos.",
+                bambaataaCaption: "Afrika Bambaataa e a Zulu Nation, promovendo paz, união e diversão através da cultura Hip-Hop.",
+                originsText2: "Pioneiros como **DJ Kool Herc**, **Afrika Bambaataa** e **Grandmaster Flash** foram fundamentais, inovando com técnicas de mixagem, \"scratching\" e criando a sonoridade base do movimento. Eles transformaram a discotecagem em uma arte performática, dando origem aos \"breaks\" que se tornariam a fundação para os MCs e B-boys.",
+                elementsTitle: "Os Quatro Elementos Fundamentais",
+                elementsIntro: "A cultura Hip-Hop é composta por quatro pilares interligados, cada um contribuindo para sua riqueza e diversidade:",
+                djingTitle: "DJing (Discotecagem)",
+                djingText: "A arte de manipular toca-discos e mixers para criar batidas, ritmos e sons únicos. O DJ é o coração musical do Hip-Hop, responsável por selecionar e mixar as faixas, além de criar os \"breaks\" que impulsionam a dança e o rap.",
+                mcingTitle: "MCing (Mestre de Cerimônias/Rap)",
+                mcingText: "A expressão vocal do Hip-Hop, onde o MC usa rimas, poesia e narrativa sobre as batidas do DJ. É a voz do movimento, abordando temas sociais, pessoais e políticos, e desafiando o status quo com habilidade lírica e ritmo.",
+                breakdanceTitle: "Breakdance (B-boying/B-girling)",
+                breakdanceText: "A dança energética e acrobática que surgiu nas ruas do Bronx. Os B-boys e B-girls combinam movimentos de \"toprock\" (em pé), \"footwork\" (no chão), \"power moves\" (acrobáticos) e \"freezes\" (posições estáticas), expressando criatividade e agilidade.",
+                graffitiTitle: "Graffiti (Arte Visual)",
+                graffitiText: "A arte visual do Hip-Hop, expressa através de letras estilizadas, murais coloridos e \"tags\" em espaços urbanos. O Graffiti transformou paredes e trens em galerias a céu aberto, sendo uma forma de reivindicação de espaço e identidade para os artistas.",
+                goldenAgeTitle: "A Era de Ouro (Anos 80 e Início dos Anos 90)",
+                goldenAgeText1: "Este período, que se estende aproximadamente de meados dos anos 80 ao início dos anos 90, é amplamente considerado a \"Era de Ouro\" do Hip-Hop. Foi uma época de explosão criativa, diversificação de estilos e enorme crescimento de popularidade. O gênero amadureceu, e artistas começaram a explorar uma vasta gama de temas e sonoridades.",
+                goldenAgeText2: "Grupos como **Run-DMC** quebraram barreiras, sendo os primeiros a ter um álbum de rap certificado como platina e a aparecer na MTV. O **Public Enemy** trouxe letras politicamente carregadas e uma sonoridade agressiva, tornando-se a voz da consciência social. O **N.W.A.** chocou o mundo com seu \"gangsta rap\" cru e sem censura, enquanto o coletivo **Native Tongues** (incluindo A Tribe Called Quest, De La Soul e Jungle Brothers) explorava temas mais positivos e jazzísticos. A era também viu a ascensão de ícones femininas como **Queen Latifah** e **Salt-N-Pepa**, que abriram caminho para futuras gerações.",
+                runDMCCaption: "Run-DMC, pioneiros que levaram o rap ao mainstream.",
+                publicEnemyCaption: "Public Enemy, a voz da consciência social no Hip-Hop.",
+                nwaCaption: "N.W.A., definindo o \"gangsta rap\" com suas letras cruas.",
+                tribeCalledQuestCaption: "A Tribe Called Quest, explorando sonoridades jazzísticas e positivas.",
+                goldenAgeText3: "A Era de Ouro solidificou o Hip-Hop como uma força cultural global, pavimentando o caminho para sua contínua evolução e domínio na indústria musical.",
+                years2000sTitle: "Os Anos 2000: Expansão e Diversificação",
+                years2000sText1: "Os anos 2000 marcaram uma nova fase para o Hip-Hop, consolidando-o como a força dominante na música popular global. A virada do milênio trouxe uma onda de diversificação sonora e comercialização sem precedentes. O \"gangsta rap\" continuou a ter sua relevância, mas novos subgêneros e estilos emergiram, expandindo o alcance do Hip-Hop para públicos ainda maiores.",
+                years2000sText2: "Artistas como **Eminem**, **Jay-Z**, **Nelly**, **50 Cent**, **OutKast** e **Kanye West** dominaram as paradas, cada um trazendo sua própria sonoridade e narrativa. O Sul dos EUA, em particular, ganhou destaque com o surgimento do **Crunk** e do **Trap**, que se tornariam influências massivas nas décadas seguintes. A produção musical tornou-se mais experimental, incorporando elementos de R&B, pop e eletrônica. O Hip-Hop dos anos 2000 não só vendeu milhões de álbuns, mas também se tornou um pilar da cultura pop, influenciando moda, cinema e televisão de forma inegável.",
+                eminemCaption: "Eminem, um dos artistas mais vendidos dos anos 2000, expandindo o alcance do rap.",
+                kanyeWestCaption: "Kanye West, um produtor e MC que redefiniu a sonoridade do Hip-Hop na década.",
+                fashionTitle: "Moda Hip-Hop: Estilo e Identidade",
+                fashionText1: "A moda é um elemento intrínseco à cultura Hip-Hop, funcionando como uma poderosa forma de expressão de identidade, status e afiliação. Desde suas origens, o estilo Hip-Hop evoluiu de roupas esportivas e oversized para uma influência global que permeia a alta costura e o streetwear.",
+                fashionText2: "Nos anos 80, a moda era marcada por agasalhos de veludo, tênis icônicos (como os Adidas Superstar popularizados pelo Run-DMC), correntes de ouro e bonés. Nos anos 90, o baggy style, roupas de grife como Tommy Hilfiger e Ralph Lauren, e marcas de Hip-Hop como FUBU e Sean John, dominaram a cena. Os anos 2000 trouxeram o \"bling-bling\" com joias extravagantes, roupas de luxo e uma estética mais opulenta. Atualmente, a moda Hip-Hop continua a ser um motor de tendências, com artistas colaborando com grandes casas de moda e influenciando o mercado global com seu estilo autêntico e inovador.",
+                oldSchoolFashionCaption: "Estilo icônico da Old School, com agasalhos e tênis clássicos.",
+                currentFashionCaption: "A moda Hip-Hop contemporânea, misturando streetwear e luxo.",
+                gangsSocietyTitle: "Hip-Hop, Gangues e a Realidade Social",
+                gangsSocietyText1: "A relação entre o Hip-Hop e a cultura de gangues é um tema complexo e muitas vezes mal compreendido. Nascido em um ambiente de adversidade e violência urbana, o Hip-Hop, em parte, surgiu como uma alternativa à vida nas ruas e à filiação a gangues, oferecendo uma saída criativa e uma forma de competição pacífica através da arte. No entanto, a realidade das gangues e suas consequências também se tornaram um tema recorrente nas letras de rap, especialmente no \"gangsta rap\".",
+                gangsSocietyText2: "Artistas usaram suas músicas para narrar as experiências de violência, pobreza e marginalização, dando voz a uma realidade que muitas vezes era ignorada pela sociedade dominante. Embora a representação de gangues no Hip-Hop tenha gerado controvérsias e críticas, ela também serviu como um espelho para as condições sociais, um chamado à atenção para os problemas enfrentados por jovens em áreas urbanas. Muitos artistas e líderes do Hip-Hop têm trabalhado ativamente para promover a paz, a educação e o empoderamento, utilizando a cultura como uma ferramenta para desviar jovens da violência e construir comunidades mais fortes.",
+                streetCultureCaption: "A cultura de rua, berço do Hip-Hop, onde a arte se tornou uma alternativa à violência.",
+                peaceMessageCaption: "Artistas e ativistas do Hip-Hop promovendo a paz e a união em suas comunidades.",
+                globalImpactTitle: "Impacto Global e Evolução Contínua",
+                globalImpactText1: "O Hip-Hop transcendeu as ruas do Bronx para se tornar um fenômeno cultural global, influenciando não apenas a música, mas também a moda, a linguagem, o cinema, a arte e o ativismo social em todos os continentes. Sua adaptabilidade e a capacidade de dar voz a comunidades marginalizadas permitiram que ele se enraizasse em diversas culturas, gerando subgêneros e estilos únicos em cada região.",
+                globalImpactText2: "Desde as batidas eletrônicas do Trap, passando pelo Drill, o Hip-Hop Consciente, o Mumble Rap, até fusões com gêneros locais, a música Hip-Hop continua a evoluir. Artistas de países como França, Alemanha, Japão, Coreia do Sul (K-Hip-Hop), Reino Unido e, claro, o Brasil, desenvolveram suas próprias identidades dentro do gênero, utilizando-o para expressar suas realidades e perspectivas únicas. Essa globalização demonstra a universalidade de sua mensagem e a força de sua expressão.",
+                hipHopBrazilTitle: "Hip-Hop no Brasil: Voz das Periferias",
+                hipHopBrazilText1: "No Brasil, o Hip-Hop chegou nos anos 80 e rapidamente se tornou uma voz poderosa e essencial para as periferias das grandes cidades. Inicialmente influenciado pelos movimentos de Nova York, o Hip-Hop brasileiro logo desenvolveu sua própria identidade, abordando questões sociais, raciais e de classe com uma perspectiva local.",
+                hipHopBrazilText2: "Grupos como **Racionais MC's** se tornaram ícones, narrando a realidade das favelas e denunciando as desigualdades sociais e a violência policial. O rap nacional tornou-se um veículo de protesto e conscientização, mas também de celebração da cultura negra e periférica. Além do rap, o breakdance e o graffiti floresceram em todo o país, transformando espaços urbanos e oferecendo oportunidades para jovens. O Hip-Hop no Brasil é um movimento cultural e político vivo, que continua a inspirar e mobilizar gerações, usando a arte como ferramenta de transformação social.",
+                racionaisCaption: "Racionais MC's, um dos grupos mais influentes do rap brasileiro.",
+                brazilianGraffitiCaption: "Graffiti nas ruas brasileiras, expressão artística e social.",
+                legacyTitle: "O Legado e o Futuro do Hip-Hop",
+                legacyText1: "O Hip-Hop, com mais de 50 anos de história, consolidou-se como uma das maiores forças culturais e econômicas do mundo. Sua jornada, das festas de rua no Bronx aos palcos globais e à dominação da indústria musical, é um testemunho de sua resiliência, criatividade e impacto. O que começou como uma forma de autoexpressão para uma comunidade marginalizada se transformou em uma plataforma global para vozes diversas e uma inspiração para milhões.",
+                legacyText2: "O futuro do Hip-Hop é tão dinâmico quanto seu passado. Com a contínua inovação tecnológica, a fusão com novos gêneros e a ascensão de novas gerações de artistas, o Hip-Hop certamente continuará a desafiar fronteiras, inspirar mudanças sociais e manter sua posição como uma das culturas mais influentes e vibrantes do planeta. Seu legado é a prova de que a arte pode realmente mudar o mundo."
+            },
+            en: {
+                pageTitle: "The History of Hip-Hop: From the Streets to the World",
+                hipHopJourney: "Hip-Hop: The Journey",
+                fundamentals: "Fundamentals",
+                origins: "Origins",
+                fourElements: "4 Elements",
+                eras: "Eras",
+                goldenAge: "Golden Era",
+                years2000s: "2000s",
+                cultureImpact: "Culture & Impact",
+                fashion: "Fashion",
+                gangsSociety: "Gangs & Society",
+                globalImpact: "Global Impact",
+                regionalFuture: "Regional & Future",
+                hipHopBrazil: "Hip-Hop in Brazil",
+                legacy: "Legacy",
+                videoSupport: "Your browser does not support the video tag.",
+                heroTitle: "Welcome to the History of Hip-Hop",
+                heroSubtitle: "From the streets of the Bronx to the world: a cultural revolution.",
+                discoverMore: "Discover More",
+                originsTitle: "The Origins: The Cradle in the Bronx (1970s)",
+                originsText1: "Hip-Hop is not just a musical genre, but a vibrant culture that emerged from the ashes of a struggling Bronx in the late 1970s. Amid social and economic challenges, with neighborhoods marked by abandonment and violence, creative youth found refuge and a powerful form of expression in street parties—the legendary **Block Parties**. These communal celebrations, often held in parks or abandoned buildings, were the stage for innovation and the emergence of a new voice.",
+                koolHercCaption: "DJ Kool Herc, considered the \"father of Hip-Hop,\" isolating music breaks for dancers.",
+                bambaataaCaption: "Afrika Bambaataa and the Zulu Nation, promoting peace, unity, and fun through Hip-Hop culture.",
+                originsText2: "Pioneers like **DJ Kool Herc**, **Afrika Bambaataa**, and **Grandmaster Flash** were fundamental, innovating with mixing techniques, \"scratching,\" and creating the foundational sound of the movement. They transformed DJing into a performance art, giving rise to the \"breaks\" that would become the foundation for MCs and B-boys.",
+                elementsTitle: "The Four Fundamental Elements",
+                elementsIntro: "Hip-Hop culture is composed of four interconnected pillars, each contributing to its richness and diversity:",
+                djingTitle: "DJing",
+                djingText: "The art of manipulating turntables and mixers to create unique beats, rhythms, and sounds. The DJ is the musical heart of Hip-Hop, responsible for selecting and mixing tracks, as well as creating the \"breaks\" that drive dance and rap.",
+                mcingTitle: "MCing (Master of Ceremonies/Rap)",
+                mcingText: "The vocal expression of Hip-Hop, where the MC uses rhymes, poetry, and narrative over the DJ's beats. It is the voice of the movement, addressing social, personal, and political themes, and challenging the status quo with lyrical skill and rhythm.",
+                breakdanceTitle: "Breakdance (B-boying/B-girling)",
+                breakdanceText: "The energetic and acrobatic dance that emerged in the streets of the Bronx. B-boys and B-girls combine \"toprock\" (upright), \"footwork\" (on the ground), \"power moves\" (acrobatic), and \"freezes\" (static positions), expressing creativity and agility.",
+                graffitiTitle: "Graffiti (Visual Art)",
+                graffitiText: "The visual art of Hip-Hop, expressed through stylized letters, colorful murals, and \"tags\" in urban spaces. Graffiti transformed walls and trains into open-air galleries, serving as a form of claiming space and identity for artists.",
+                goldenAgeTitle: "The Golden Era (1980s and Early 1990s)",
+                goldenAgeText1: "This period, roughly from the mid-1980s to the early 1990s, is widely considered the \"Golden Era\" of Hip-Hop. It was a time of creative explosion, diversification of styles, and enormous growth in popularity. The genre matured, and artists began to explore a vast range of themes and sounds.",
+                goldenAgeText2: "Groups like **Run-DMC** broke barriers, being the first to have a platinum-certified rap album and to appear on MTV. **Public Enemy** brought politically charged lyrics and an aggressive sound, becoming the voice of social consciousness. **N.W.A.** shocked the world with their raw and uncensored \"gangsta rap,\" while the **Native Tongues** collective (including A Tribe Called Quest, De La Soul, and Jungle Brothers) explored more positive and jazzy themes. The era also saw the rise of female icons like **Queen Latifah** and **Salt-N-Pepa**, who paved the way for future generations.",
+                runDMCCaption: "Run-DMC, pioneers who brought rap to the mainstream.",
+                publicEnemyCaption: "Public Enemy, the voice of social consciousness in Hip-Hop.",
+                nwaCaption: "N.W.A., defining \"gangsta rap\" with their raw lyrics.",
+                tribeCalledQuestCaption: "A Tribe Called Quest, exploring jazzy and positive sounds.",
+                goldenAgeText3: "The Golden Era solidified Hip-Hop as a global cultural force, paving the way for its continuous evolution and dominance in the music industry.",
+                years2000sTitle: "The 2000s: Expansion and Diversification",
+                years2000sText1: "The 2000s marked a new phase for Hip-Hop, solidifying it as the dominant force in global popular music. The turn of the millennium brought a wave of unprecedented sonic diversification and commercialization. \"Gangsta rap\" continued to hold its relevance, but new subgenres and styles emerged, expanding Hip-Hop's reach to even larger audiences.",
+                years2000sText2: "Artists like **Eminem**, **Jay-Z**, **Nelly**, **50 Cent**, **OutKast**, and **Kanye West** dominated the charts, each bringing their own sound and narrative. The American South, in particular, gained prominence with the rise of **Crunk** and **Trap**, which would become massive influences in subsequent decades. Music production became more experimental, incorporating elements of R&B, pop, and electronic music. Hip-Hop in the 2000s not only sold millions of albums but also became a cornerstone of pop culture, undeniably influencing fashion, film, and television.",
+                eminemCaption: "Eminem, one of the best-selling artists of the 2000s, expanding rap's reach.",
+                kanyeWestCaption: "Kanye West, a producer and MC who redefined Hip-Hop's sound in the decade.",
+                fashionTitle: "Hip-Hop Fashion: Style and Identity",
+                fashionText1: "Fashion is an intrinsic element of Hip-Hop culture, serving as a powerful form of expressing identity, status, and affiliation. Since its origins, Hip-Hop style has evolved from sportswear and oversized clothing to a global influence that permeates high fashion and streetwear.",
+                fashionText2: "In the 80s, fashion was characterized by velour tracksuits, iconic sneakers (like the Adidas Superstar popularized by Run-DMC), gold chains, and caps. In the 90s, baggy style, designer brands like Tommy Hilfiger and Ralph Lauren, and Hip-Hop brands like FUBU and Sean John dominated the scene. The 2000s brought \"bling-bling\" with extravagant jewelry, luxury clothing, and a more opulent aesthetic. Currently, Hip-Hop fashion continues to be a trendsetter, with artists collaborating with major fashion houses and influencing the global market with their authentic and innovative style.",
+                oldSchoolFashionCaption: "Iconic Old School style, with classic tracksuits and sneakers.",
+                currentFashionCaption: "Contemporary Hip-Hop fashion, blending streetwear and luxury.",
+                gangsSocietyTitle: "Hip-Hop, Gangs, and Social Reality",
+                gangsSocietyText1: "The relationship between Hip-Hop and gang culture is a complex and often misunderstood topic. Born in an environment of adversity and urban violence, Hip-Hop, in part, emerged as an alternative to street life and gang affiliation, offering a creative outlet and a form of peaceful competition through art. However, the reality of gangs and their consequences also became a recurring theme in rap lyrics, especially in \"gangsta rap.\"",
+                gangsSocietyText2: "Artists used their music to narrate experiences of violence, poverty, and marginalization, giving voice to a reality often ignored by mainstream society. While the representation of gangs in Hip-Hop has generated controversy and criticism, it also served as a mirror for social conditions, calling attention to the problems faced by youth in urban areas. Many Hip-Hop artists and leaders have actively worked to promote peace, education, and empowerment, using the culture as a tool to divert young people from violence and build stronger communities.",
+                streetCultureCaption: "Street culture, the birthplace of Hip-Hop, where art became an alternative to violence.",
+                peaceMessageCaption: "Hip-Hop artists and activists promoting peace and unity in their communities.",
+                globalImpactTitle: "Global Impact and Continuous Evolution",
+                globalImpactText1: "Hip-Hop transcended the streets of the Bronx to become a global cultural phenomenon, influencing not only music but also fashion, language, film, art, and social activism across all continents. Its adaptability and ability to give voice to marginalized communities allowed it to take root in diverse cultures, generating unique subgenres and styles in each region.",
+                globalImpactText2: "From the electronic beats of Trap, through Drill, Conscious Hip-Hop, Mumble Rap, to fusions with local genres, Hip-Hop music continues to evolve. Artists from countries like France, Germany, Japan, South Korea (K-Hip-Hop), the United Kingdom, and, of course, Brazil, have developed their own identities within the genre, using it to express their unique realities and perspectives. This globalization demonstrates the universality of its message and the strength of its expression.",
+                hipHopBrazilTitle: "Hip-Hop in Brazil: Voice of the Peripheries",
+                hipHopBrazilText1: "In Brazil, Hip-Hop arrived in the 1980s and quickly became a powerful and essential voice for the peripheries of large cities. Initially influenced by the movements from New York, Brazilian Hip-Hop soon developed its own identity, addressing social, racial, and class issues with a local perspective.",
+                hipHopBrazilText2: "Groups like **Racionais MC's** became icons, narrating the reality of favelas and denouncing social inequalities and police violence. National rap became a vehicle for protest and awareness, but also for celebrating black and peripheral culture. In addition to rap, breakdance and graffiti flourished throughout the country, transforming urban spaces and offering opportunities for young people. Hip-Hop in Brazil is a living cultural and political movement that continues to inspire and mobilize generations, using art as a tool for social transformation.",
+                racionaisCaption: "Racionais MC's, one of the most influential groups in Brazilian rap.",
+                brazilianGraffitiCaption: "Graffiti in Brazilian streets, artistic and social expression.",
+                legacyTitle: "The Legacy and Future of Hip-Hop",
+                legacyText1: "Hip-Hop, with over 50 years of history, has solidified itself as one of the world's greatest cultural and economic forces. Its journey, from street parties in the Bronx to global stages and the domination of the music industry, is a testament to its resilience, creativity, and impact. What began as a form of self-expression for a marginalized community has transformed into a global platform for diverse voices and an inspiration for millions.",
+                legacyText2: "The future of Hip-Hop is as dynamic as its past. With continuous technological innovation, fusion with new genres, and the rise of new generations of artists, Hip-Hop will certainly continue to challenge boundaries, inspire social change, and maintain its position as one of the most influential and vibrant cultures on the planet. Its legacy is proof that art can truly change the world."
+            }
+        };
+
+        const languageSwitcher = document.getElementById('language-switcher');
+
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    // For innerHTML, use a temporary div to correctly handle HTML tags within translation strings
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = translations[lang][key];
+                    element.innerHTML = tempDiv.innerHTML;
+                }
+            });
+            // Update page title separately
+            document.title = translations[lang].pageTitle;
+            document.documentElement.lang = lang; // Update the HTML lang attribute
+        }
+
+        languageSwitcher.addEventListener('change', (event) => {
+            applyLanguage(event.target.value);
+        });
+
+        // Apply default language on load
+        applyLanguage(languageSwitcher.value);
+        
         // JavaScript para o menu mobile e dropdowns
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.querySelector('.menu-toggle');
