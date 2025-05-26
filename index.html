@@ -374,25 +374,30 @@
                 font-size: 0.95rem;
             }
         }
-         #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #4CAF50;
-      color: white;
-      padding: 15px 25px;
-      border: none;
-      border-radius: 55px;
-      cursor: pointer;
-      opacity: 0;
-      /* Inicialmente invisível */
-      transition: opacity 0.3s ease-in-out;
-    }
+        #backToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3b82f6; /* Usando a cor accent-blue */
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 50%; /* Torna o botão redondo */
+            cursor: pointer;
+            opacity: 0; /* Inicialmente invisível */
+            visibility: hidden; /* Esconde completamente */
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px; /* Largura e altura para um botão redondo */
+            height: 50px;
+        }
 
-    #backToTop.show {
-      opacity: 1;
-      /* Torna visível quando a classe 'show' é adicionada */
-    }
+        #backToTopBtn.show {
+            opacity: 1; /* Torna visível quando a classe 'show' é adicionada */
+            visibility: visible;
+        }
     </style>
 </head>
 <body class="bg-dark-bg text-text-light">
