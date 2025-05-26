@@ -205,14 +205,13 @@
         }
 
         .menu-toggle {
-            /* Ajustes para o botão de menu mobile */
             display: none; /* Esconde o botão em telas maiores (controlado por md:hidden no HTML) */
             background: none;
             border: none;
-            font-size: 2.2rem; /* Ligeiramente maior */
+            font-size: 2.2rem;
             color: white;
             cursor: pointer;
-            padding: 0.75rem; /* Mais preenchimento */
+            padding: 0.75rem;
             border-radius: 0.5rem;
             transition: background-color 0.3s ease;
         }
@@ -222,19 +221,33 @@
         }
 
         /* Estilos para os dropdowns no desktop */
-        .group .dropdown-menu {
+        .dropdown-container {
+            position: relative;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.5rem 0; /* Ajuste para melhor espaçamento no link principal */
+        }
+
+        .dropdown-menu {
             position: absolute;
             display: none; /* Escondido por padrão */
             background-color: var(--dark-bg);
-            text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20;
-            min-width: 160px; /* Largura mínima para o dropdown */
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border-radius: 0.5rem;
-            overflow: hidden; /* Garante que os cantos arredondados funcionem */
+            overflow: hidden;
+            min-width: 160px;
+            top: 100%; /* Posiciona abaixo do trigger */
+            left: 0;
+            z-index: 20;
+            margin-top: 0.5rem; /* Espaçamento entre o trigger e o menu */
         }
 
-        .group:hover .dropdown-menu {
-            display: block; /* Mostra no hover do pai */
+        .dropdown-container:hover .dropdown-menu {
+            display: block; /* Mostra no hover do container */
         }
 
         .dropdown-menu a {
@@ -242,11 +255,12 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            text-align: left; /* Alinha o texto à esquerda nos itens do dropdown */
+            text-align: left;
+            transition: background-color 0.3s ease;
         }
 
         .dropdown-menu a:hover {
-            background-color: var(--light-dark-bg); /* Cor de fundo ao passar o mouse nos itens */
+            background-color: var(--light-dark-bg);
         }
 
         /* Responsividade geral */
@@ -315,9 +329,8 @@
             }
 
             /* Estilos para os dropdowns no mobile */
-            #navbar ul.active .group .dropdown-menu {
-                display: flex; /* Mostra os dropdowns no mobile */
-                flex-direction: column;
+            .dropdown-container .dropdown-menu {
+                display: none; /* Esconde por padrão no mobile */
                 position: static; /* Remove o posicionamento absoluto */
                 width: auto; /* Remove a largura fixa */
                 background-color: transparent; /* Fundo transparente */
@@ -326,8 +339,16 @@
                 margin-top: 0.5rem;
             }
 
-            #navbar ul.active .group > a {
-                padding: 0.5rem 1rem; /* Ajusta o padding do item pai do dropdown */
+            /* Quando o menu mobile está ativo, mostra os dropdowns */
+            #navbar ul.active .dropdown-container .dropdown-menu {
+                display: flex; /* Mostra os dropdowns no mobile */
+                flex-direction: column;
+            }
+
+            /* Ajusta o padding para o trigger do dropdown no mobile */
+            .dropdown-container .dropdown-trigger {
+                padding: 0.5rem 1rem;
+                justify-content: center; /* Centraliza o texto do trigger */
             }
         }
 
@@ -354,43 +375,43 @@
                 <a href="#hero" class="hover:text-white transition-colors duration-300">Hip-Hop: A Jornada</a>
             </div>
             <ul class="hidden md:flex space-x-6 text-lg font-semibold">
-                <li class="relative group">
-                    <a href="#" class="hover:text-accent-blue transition-colors duration-300 flex items-center">
+                <li class="dropdown-container">
+                    <span class="dropdown-trigger hover:text-accent-blue transition-colors duration-300">
                         Fundamentos
                         <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </a>
-                    <ul class="dropdown-menu absolute hidden group-hover:block bg-dark-bg text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20">
+                    </span>
+                    <ul class="dropdown-menu">
                         <li><a href="#origens" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Origens</a></li>
                         <li><a href="#elementos" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">4 Elementos</a></li>
                     </ul>
                 </li>
-                <li class="relative group">
-                    <a href="#" class="hover:text-accent-blue transition-colors duration-300 flex items-center">
+                <li class="dropdown-container">
+                    <span class="dropdown-trigger hover:text-accent-blue transition-colors duration-300">
                         Eras
                         <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </a>
-                    <ul class="dropdown-menu absolute hidden group-hover:block bg-dark-bg text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20">
+                    </span>
+                    <ul class="dropdown-menu">
                         <li><a href="#era-ouro" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Era de Ouro</a></li>
                         <li><a href="#anos-2000" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Anos 2000</a></li>
                     </ul>
                 </li>
-                <li class="relative group">
-                    <a href="#" class="hover:text-accent-blue transition-colors duration-300 flex items-center">
+                <li class="dropdown-container">
+                    <span class="dropdown-trigger hover:text-accent-blue transition-colors duration-300">
                         Cultura & Impacto
                         <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </a>
-                    <ul class="dropdown-menu absolute hidden group-hover:block bg-dark-bg text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20">
+                    </span>
+                    <ul class="dropdown-menu">
                         <li><a href="#moda" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Moda</a></li>
                         <li><a href="#gangues" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Gangues & Sociedade</a></li>
                         <li><a href="#global" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Impacto Global</a></li>
                     </ul>
                 </li>
-                <li class="relative group">
-                    <a href="#" class="hover:text-accent-blue transition-colors duration-300 flex items-center">
+                <li class="dropdown-container">
+                    <span class="dropdown-trigger hover:text-accent-blue transition-colors duration-300">
                         Regional & Futuro
                         <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </a>
-                    <ul class="dropdown-menu absolute hidden group-hover:block bg-dark-bg text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20">
+                    </span>
+                    <ul class="dropdown-menu">
                         <li><a href="#brasil" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Hip-Hop no Brasil</a></li>
                         <li><a href="#legado" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Legado</a></li>
                     </ul>
