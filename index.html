@@ -205,19 +205,48 @@
         }
 
         .menu-toggle {
-            display: none; /* Esconde o botão em telas maiores */
+            /* Ajustes para o botão de menu mobile */
+            display: none; /* Esconde o botão em telas maiores (controlado por md:hidden no HTML) */
             background: none;
             border: none;
-            font-size: 2rem;
+            font-size: 2.2rem; /* Ligeiramente maior */
             color: white;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: 0.75rem; /* Mais preenchimento */
             border-radius: 0.5rem;
             transition: background-color 0.3s ease;
         }
 
         .menu-toggle:hover {
             background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilos para os dropdowns no desktop */
+        .group .dropdown-menu {
+            position: absolute;
+            display: none; /* Escondido por padrão */
+            background-color: var(--dark-bg);
+            text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20;
+            min-width: 160px; /* Largura mínima para o dropdown */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 0.5rem;
+            overflow: hidden; /* Garante que os cantos arredondados funcionem */
+        }
+
+        .group:hover .dropdown-menu {
+            display: block; /* Mostra no hover do pai */
+        }
+
+        .dropdown-menu a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left; /* Alinha o texto à esquerda nos itens do dropdown */
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--light-dark-bg); /* Cor de fundo ao passar o mouse nos itens */
         }
 
         /* Responsividade geral */
@@ -229,7 +258,7 @@
 
         @media (max-width: 768px) {
             #navbar ul {
-                display: none; /* Esconde o menu em telas pequenas */
+                display: none; /* Esconde o menu em telas pequenas por padrão */
                 flex-direction: column;
                 position: absolute;
                 top: 70px; /* Abaixo do header */
@@ -263,7 +292,7 @@
             }
 
             .menu-toggle {
-                display: block; /* Mostra o botão em telas pequenas */
+                display: block; /* Mostra o botão em telas pequenas (controlado por md:hidden no HTML) */
             }
 
             .hero-content h1 {
@@ -284,6 +313,22 @@
             .figure-container figure {
                 flex: 1 1 100%; /* Uma coluna em telas muito pequenas */
             }
+
+            /* Estilos para os dropdowns no mobile */
+            #navbar ul.active .group .dropdown-menu {
+                display: flex; /* Mostra os dropdowns no mobile */
+                flex-direction: column;
+                position: static; /* Remove o posicionamento absoluto */
+                width: auto; /* Remove a largura fixa */
+                background-color: transparent; /* Fundo transparente */
+                box-shadow: none; /* Sem sombra */
+                padding-left: 1.5rem; /* Recuo para sub-itens */
+                margin-top: 0.5rem;
+            }
+
+            #navbar ul.active .group > a {
+                padding: 0.5rem 1rem; /* Ajusta o padding do item pai do dropdown */
+            }
         }
 
         @media (max-width: 480px) {
@@ -303,23 +348,55 @@
     </style>
 </head>
 <body class="bg-dark-bg text-text-light">
-    <header class="bg-dark-bg text-white shadow-lg fixed w-full z-50">
-        <nav id="navbar" class="container mx-auto flex justify-between items-center p-4">
+    <header class="bg-dark-bg text-white shadow-lg fixed w-full z-50 border-b border-gray-700">
+        <nav id="navbar" class="container mx-auto flex justify-between items-center py-4 px-6">
             <div class="logo text-2xl font-extrabold text-accent-blue">
                 <a href="#hero" class="hover:text-white transition-colors duration-300">Hip-Hop: A Jornada</a>
             </div>
-            <ul class="flex space-x-6 text-lg font-semibold">
-                <li><a href="#origens" class="hover:text-accent-blue transition-colors duration-300">Origens</a></li>
-                <li><a href="#elementos" class="hover:text-accent-blue transition-colors duration-300">4 Elementos</a></li>
-                <li><a href="#era-ouro" class="hover:text-accent-blue transition-colors duration-300">Era de Ouro</a></li>
-                <li><a href="#anos-2000" class="hover:text-accent-blue transition-colors duration-300">Anos 2000</a></li>
-                <li><a href="#moda" class="hover:text-accent-blue transition-colors duration-300">Moda</a></li>
-                <li><a href="#gangues" class="hover:text-accent-blue transition-colors duration-300">Gangues & Sociedade</a></li>
-                <li><a href="#global" class="hover:text-accent-blue transition-colors duration-300">Impacto Global</a></li>
-                <li><a href="#brasil" class="hover:text-accent-blue transition-colors duration-300">Hip-Hop no Brasil</a></li>
-                <li><a href="#legado" class="hover:text-accent-blue transition-colors duration-300">Legado</a></li>
+            <ul class="hidden md:flex space-x-6 text-lg font-semibold">
+                <li class="relative group">
+                    <a href="#" class="hover:text-accent-blue transition-colors duration-300 flex items-center">
+                        Fundamentos
+                        <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <ul class="dropdown-menu absolute hidden group-hover:block bg-dark-bg text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20">
+                        <li><a href="#origens" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Origens</a></li>
+                        <li><a href="#elementos" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">4 Elementos</a></li>
+                    </ul>
+                </li>
+                <li class="relative group">
+                    <a href="#" class="hover:text-accent-blue transition-colors duration-300 flex items-center">
+                        Eras
+                        <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <ul class="dropdown-menu absolute hidden group-hover:block bg-dark-bg text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20">
+                        <li><a href="#era-ouro" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Era de Ouro</a></li>
+                        <li><a href="#anos-2000" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Anos 2000</a></li>
+                    </ul>
+                </li>
+                <li class="relative group">
+                    <a href="#" class="hover:text-accent-blue transition-colors duration-300 flex items-center">
+                        Cultura & Impacto
+                        <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <ul class="dropdown-menu absolute hidden group-hover:block bg-dark-bg text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20">
+                        <li><a href="#moda" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Moda</a></li>
+                        <li><a href="#gangues" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Gangues & Sociedade</a></li>
+                        <li><a href="#global" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Impacto Global</a></li>
+                    </ul>
+                </li>
+                <li class="relative group">
+                    <a href="#" class="hover:text-accent-blue transition-colors duration-300 flex items-center">
+                        Regional & Futuro
+                        <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <ul class="dropdown-menu absolute hidden group-hover:block bg-dark-bg text-white shadow-lg rounded-md mt-2 w-48 py-2 z-20">
+                        <li><a href="#brasil" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Hip-Hop no Brasil</a></li>
+                        <li><a href="#legado" class="block px-4 py-2 hover:bg-light-dark-bg transition-colors duration-300">Legado</a></li>
+                    </ul>
+                </li>
             </ul>
-            <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+            <button class="menu-toggle md:hidden" aria-label="Abrir menu" aria-expanded="false">☰</button>
         </nav>
     </header>
 
@@ -503,7 +580,8 @@
 
             if (menuToggle && navUl) {
                 menuToggle.addEventListener('click', () => {
-                    navUl.classList.toggle('active');
+                    const isExpanded = navUl.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded); // Adiciona/atualiza aria-expanded
                 });
 
                 // Fechar o menu ao clicar em um link (apenas em mobile)
@@ -511,6 +589,7 @@
                     link.addEventListener('click', () => {
                         if (window.innerWidth <= 768) {
                             navUl.classList.remove('active');
+                            menuToggle.setAttribute('aria-expanded', 'false'); // Atualiza aria-expanded
                         }
                     });
                 });
