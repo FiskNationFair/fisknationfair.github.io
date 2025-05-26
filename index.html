@@ -1,24 +1,320 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A História do Hip-Hop</title>
-    <link rel="stylesheet" href="\css/style.css">
-    </head>
-<body>
-    <header>
-        <nav id="navbar">
-            <div class="logo">
-                <a href="#hero">Hip-Hop: A Jornada</a>
+    <title>A História do Hip-Hop: Das Ruas para o Mundo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'dark-bg': '#1a202c', /* Cor de fundo principal */
+                        'light-dark-bg': '#2d3748', /* Cor de fundo alternativa */
+                        'accent-blue': '#3b82f6', /* Azul vibrante para botões e destaques */
+                        'accent-light-blue': '#63b3ed', /* Azul claro para títulos */
+                        'text-light': '#e2e8f0', /* Cor de texto clara */
+                        'text-dark': '#cbd5e0', /* Cor de texto mais escura */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para a seção hero */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Estilos para o vídeo de fundo */
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            background-size: cover;
+            filter: brightness(0.5); /* Escurece o vídeo para melhor legibilidade do texto */
+        }
+
+        /* Estilos para o conteúdo da seção hero */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para o texto */
+            border-radius: 1rem;
+            max-width: 90%;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Estilos para as seções de conteúdo */
+        .content-section {
+            padding: 4rem 2rem;
+            margin: 0 auto;
+            max-width: 1200px;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-section.alternate-bg {
+            background-color: var(--light-dark-bg);
+        }
+
+        .content-section h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            color: var(--accent-light-blue);
+        }
+
+        .content-section h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .content-section p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Estilos para as figuras e galeria */
+        .figure-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .figure-container figure {
+            flex: 1 1 calc(50% - 2rem); /* Duas colunas em telas maiores */
+            max-width: 400px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .figure-container img {
+            width: 100%;
+            height: 250px; /* Altura fixa para consistência */
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .figure-container figcaption {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        /* Grid para os elementos */
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .element-card {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .element-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .element-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Galeria de imagens da Era de Ouro */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item figcaption {
+            padding: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        /* Estilos para o menu mobile */
+        #navbar ul {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .menu-toggle {
+            display: none; /* Esconde o botão em telas maiores */
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsividade geral */
+        @media (max-width: 1024px) {
+            .content-section h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #navbar ul {
+                display: none; /* Esconde o menu em telas pequenas */
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Abaixo do header */
+                left: 0;
+                width: 100%;
+                background-color: #1a202c; /* Cor de fundo do menu mobile */
+                padding: 1rem 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                z-index: 100;
+            }
+
+            #navbar ul.active {
+                display: flex; /* Mostra o menu quando ativo */
+            }
+
+            #navbar ul li {
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem 0;
+            }
+
+            #navbar ul li a {
+                display: block;
+                padding: 0.5rem 1rem;
+                border-radius: 0.5rem;
+                transition: background-color 0.3s ease;
+            }
+
+            #navbar ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block; /* Mostra o botão em telas pequenas */
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            .content-section {
+                padding: 2.5rem 1.5rem;
+            }
+            .content-section h2 {
+                font-size: 2rem;
+            }
+            .content-section p {
+                font-size: 1rem;
+            }
+            .figure-container figure {
+                flex: 1 1 100%; /* Uma coluna em telas muito pequenas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+            .content-section p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-text-light">
+    <header class="bg-dark-bg text-white shadow-lg fixed w-full z-50">
+        <nav id="navbar" class="container mx-auto flex justify-between items-center p-4">
+            <div class="logo text-2xl font-extrabold text-accent-blue">
+                <a href="#hero" class="hover:text-white transition-colors duration-300">Hip-Hop: A Jornada</a>
             </div>
-            <ul>
-                <li><a href="#origens">Origens</a></li>
-                <li><a href="#elementos">4 Elementos</a></li>
-                <li><a href="#era-ouro">Era de Ouro</a></li>
-                <li><a href="#global">Impacto Global</a></li>
-                <li><a href="#brasil">Hip-Hop no Brasil</a></li>
-                <li><a href="#legado">Legado</a></li>
+            <ul class="flex space-x-6 text-lg font-semibold">
+                <li><a href="#origens" class="hover:text-accent-blue transition-colors duration-300">Origens</a></li>
+                <li><a href="#elementos" class="hover:text-accent-blue transition-colors duration-300">4 Elementos</a></li>
+                <li><a href="#era-ouro" class="hover:text-accent-blue transition-colors duration-300">Era de Ouro</a></li>
+                <li><a href="#global" class="hover:text-accent-blue transition-colors duration-300">Impacto Global</a></li>
+                <li><a href="#brasil" class="hover:text-accent-blue transition-colors duration-300">Hip-Hop no Brasil</a></li>
+                <li><a href="#legado" class="hover:text-accent-blue transition-colors duration-300">Legado</a></li>
             </ul>
             <button class="menu-toggle" aria-label="Abrir menu">☰</button>
         </nav>
@@ -26,83 +322,160 @@
 
     <main>
         <section id="hero" class="hero-section">
+            <video class="hero-video" autoplay loop muted playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-urban-man-walking-and-listening-to-music-4009-large.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+
             <div class="hero-content">
-                <h1>Bem-vindos à História do Hip-Hop</h1>
-                <p>Das ruas do Bronx para o mundo: uma revolução cultural.</p>
-                <a href="#origens" class="cta-button">Descubra Mais</a>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 drop-shadow-lg">Bem-vindos à História do Hip-Hop</h1>
+                <p class="text-lg md:text-xl lg:text-2xl mb-8 drop-shadow-md">Das ruas do Bronx para o mundo: uma revolução cultural.</p>
+                <a href="#origens" class="cta-button bg-accent-blue hover:bg-blue-700 text-white py-3 px-8 rounded-full text-xl font-bold transition-all duration-300 shadow-lg">Descubra Mais</a>
             </div>
         </section>
 
         <section id="origens" class="content-section">
-            <h2>As Origens (Anos 70)</h2>
-            <p>O Hip-Hop nasceu no Bronx, Nova York, em meio a um cenário de desafios sociais e econômicos. Jovens criativos encontraram nas festas de rua (Block Parties) uma forma de expressão e comunidade.</p>
+            <h2>As Origens: O Berço no Bronx (Anos 70)</h2>
+            <p>
+                O Hip-Hop não é apenas um gênero musical, mas uma cultura vibrante que nasceu das cinzas de um Bronx em crise no final dos anos 1970. Em meio a desafios sociais e econômicos, com bairros marcados pelo abandono e pela violência, jovens criativos encontraram nas festas de rua — as lendárias **Block Parties** — um refúgio e uma poderosa forma de expressão. Essas celebrações comunitárias, muitas vezes realizadas em parques ou edifícios abandonados, eram o palco para a inovação e o surgimento de uma nova voz.
+            </p>
             <div class="figure-container">
                 <figure>
-                    <img src="\assets/images/dj_kool_herc.jpg" alt="DJ Kool Herc">
-                    <figcaption>DJ Kool Herc, um dos pioneiros, isolando os "breaks" das músicas.</figcaption>
+                    <img src="https://placehold.co/600x400/000000/FFFFFF?text=DJ+Kool+Herc" alt="DJ Kool Herc" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <figcaption>DJ Kool Herc, considerado o "pai do Hip-Hop", isolando os "breaks" das músicas para os dançarinos.</figcaption>
                 </figure>
                 <figure>
-                    <img src="\assets/images/Africa Bambaataa.jpeg" alt="Afrika Bambaataa">
-                    <figcaption>Afrika Bambaataa e a Zulu Nation, promovendo paz, união e diversão.</figcaption>
+                    <img src="https://placehold.co/600x400/000000/FFFFFF?text=Afrika+Bambaataa" alt="Afrika Bambaataa" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <figcaption>Afrika Bambaataa e a Zulu Nation, promovendo paz, união e diversão através da cultura Hip-Hop.</figcaption>
                 </figure>
             </div>
-            <p>Artistas como DJ Kool Herc, Afrika Bambaataa e Grandmaster Flash foram fundamentais, inovando com técnicas de mixagem e criando a sonoridade base do movimento.</p>
+            <p>
+                Pioneiros como **DJ Kool Herc**, **Afrika Bambaataa** e **Grandmaster Flash** foram fundamentais, inovando com técnicas de mixagem, "scratching" e criando a sonoridade base do movimento. Eles transformaram a discotecagem em uma arte performática, dando origem aos "breaks" que se tornariam a fundação para os MCs e B-boys.
+            </p>
         </section>
 
         <section id="elementos" class="content-section alternate-bg">
             <h2>Os Quatro Elementos Fundamentais</h2>
+            <p>A cultura Hip-Hop é composta por quatro pilares interligados, cada um contribuindo para sua riqueza e diversidade:</p>
             <div class="elements-grid">
                 <article class="element-card">
                     <h3>DJing (Discotecagem)</h3>
-                    <img src="\assets/images/Dj Premier.jpeg" alt="DJing">
-                    <p>A arte de manipular sons e criar música com toca-discos e mixers. O DJ é a espinha dorsal da música hip-hop.</p>
+                    <img src="https://placehold.co/600x400/000000/FFFFFF?text=DJing" alt="DJing" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <p>A arte de manipular toca-discos e mixers para criar batidas, ritmos e sons únicos. O DJ é o coração musical do Hip-Hop, responsável por selecionar e mixar as faixas, além de criar os "breaks" que impulsionam a dança e o rap.</p>
                 </article>
                 <article class="element-card">
                     <h3>MCing (Mestre de Cerimônias/Rap)</h3>
-                    <img src="assets/images/mcing.jpg" alt="MCing">
-                    <p>A expressão vocal do hip-hop, usando rimas, poesia e narrativa sobre as batidas do DJ.</p>
+                    <img src="https://placehold.co/600x400/000000/FFFFFF?text=MCing" alt="MCing" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <p>A expressão vocal do Hip-Hop, onde o MC usa rimas, poesia e narrativa sobre as batidas do DJ. É a voz do movimento, abordando temas sociais, pessoais e políticos, e desafiando o status quo com habilidade lírica e ritmo.</p>
                 </article>
                 <article class="element-card">
                     <h3>Breakdance (B-boying/B-girling)</h3>
-                    <img src="assets/images/breakdance.jpg" alt="Breakdance">
-                    <p>A dança energética e acrobática que surgiu nas ruas, com movimentos icônicos como moinho de vento e freezes.</p>
+                    <img src="https://placehold.co/600x400/000000/FFFFFF?text=Breakdance" alt="Breakdance" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <p>A dança energética e acrobática que surgiu nas ruas do Bronx. Os B-boys e B-girls combinam movimentos de "toprock" (em pé), "footwork" (no chão), "power moves" (acrobáticos) e "freezes" (posições estáticas), expressando criatividade e agilidade.</p>
                 </article>
                 <article class="element-card">
-                    <h3>Graffiti</h3>
-                    <img src="assets/images/graffiti.jpg" alt="Graffiti">
-                    <p>A arte visual do hip-hop, expressa através de letras estilizadas, murais coloridos e tags em espaços urbanos.</p>
+                    <h3>Graffiti (Arte Visual)</h3>
+                    <img src="https://placehold.co/600x400/000000/FFFFFF?text=Graffiti" alt="Graffiti" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <p>A arte visual do Hip-Hop, expressa através de letras estilizadas, murais coloridos e "tags" em espaços urbanos. O Graffiti transformou paredes e trens em galerias a céu aberto, sendo uma forma de reivindicação de espaço e identidade para os artistas.</p>
                 </article>
             </div>
         </section>
 
         <section id="era-ouro" class="content-section">
             <h2>A Era de Ouro (Anos 80 e Início dos Anos 90)</h2>
-            <p>Este período viu o hip-hop explodir em popularidade e diversificar-se. Artistas como Run-DMC, Public Enemy, N.W.A., e Queen Latifah trouxeram novas sonoridades e mensagens poderosas.</p>
+            <p>
+                Este período, que se estende aproximadamente de meados dos anos 80 ao início dos anos 90, é amplamente considerado a "Era de Ouro" do Hip-Hop. Foi uma época de explosão criativa, diversificação de estilos e enorme crescimento de popularidade. O gênero amadureceu, e artistas começaram a explorar uma vasta gama de temas e sonoridades.
+            </p>
+            <p>
+                Grupos como **Run-DMC** quebraram barreiras, sendo os primeiros a ter um álbum de rap certificado como platina e a aparecer na MTV. O **Public Enemy** trouxe letras politicamente carregadas e uma sonoridade agressiva, tornando-se a voz da consciência social. O **N.W.A.** chocou o mundo com seu "gangsta rap" cru e sem censura, enquanto o coletivo **Native Tongues** (incluindo A Tribe Called Quest, De La Soul e Jungle Brothers) explorava temas mais positivos e jazzísticos. A era também viu a ascensão de ícones femininas como **Queen Latifah** e **Salt-N-Pepa**, que abriram caminho para futuras gerações.
+            </p>
             <div id="gallery-golden-age" class="image-gallery">
                 </div>
+            <p>
+                A Era de Ouro solidificou o Hip-Hop como uma força cultural global, pavimentando o caminho para sua contínua evolução e domínio na indústria musical.
+            </p>
         </section>
 
         <section id="global" class="content-section alternate-bg">
-            <h2>Impacto Global e Evolução</h2>
-            <p>O Hip-Hop transcendeu fronteiras, influenciando música, moda, linguagem e cultura em todo o mundo. Surgiram novas vertentes e artistas que continuam a moldar o gênero.</p>
-            </section>
+            <h2>Impacto Global e Evolução Contínua</h2>
+            <p>
+                O Hip-Hop transcendeu as ruas do Bronx para se tornar um fenômeno cultural global, influenciando não apenas a música, mas também a moda, a linguagem, o cinema, a arte e o ativismo social em todos os continentes. Sua adaptabilidade e a capacidade de dar voz a comunidades marginalizadas permitiram que ele se enraizasse em diversas culturas, gerando subgêneros e estilos únicos em cada região.
+            </p>
+            <p>
+                Desde as batidas eletrônicas do Trap, passando pelo Drill, o Hip-Hop Consciente, o Mumble Rap, até fusões com gêneros locais, a música Hip-Hop continua a evoluir. Artistas de países como França, Alemanha, Japão, Coreia do Sul (K-Hip-Hop), Reino Unido e, claro, o Brasil, desenvolveram suas próprias identidades dentro do gênero, utilizando-o para expressar suas realidades e perspectivas únicas. Essa globalização demonstra a universalidade de sua mensagem e a força de sua expressão.
+            </p>
+        </section>
 
         <section id="brasil" class="content-section">
-            <h2>Hip-Hop no Brasil</h2>
-            <p>No Brasil, o hip-hop chegou nos anos 80 e rapidamente se tornou uma voz importante para as periferias. Nomes como Thaíde & DJ Hum e Racionais MC's são pioneiros e referências até hoje.</p>
-            </section>
+            <h2>Hip-Hop no Brasil: Voz das Periferias</h2>
+            <p>
+                No Brasil, o Hip-Hop chegou nos anos 80 e rapidamente se tornou uma voz poderosa e essencial para as periferias das grandes cidades. Inicialmente influenciado pelos movimentos de Nova York, o Hip-Hop brasileiro logo desenvolveu sua própria identidade, abordando questões sociais, racismo, desigualdade e a realidade das comunidades.
+            </p>
+            <p>
+                Pioneiros como **Thaíde & DJ Hum** e os lendários **Racionais MC's** (Mano Brown, Ice Blue, Edi Rock e KL Jay) são referências incontestáveis, com letras que se tornaram hinos de resistência e reflexão. Outros nomes importantes incluem **Pavilhão 9**, **Sabotage**, **Facção Central**, e mais recentemente, artistas como **Emicida**, **Criolo**, **Karol Conká**, **Djonga** e **Flora Matos**, que continuam a expandir as fronteiras do gênero, incorporando novas sonoridades e mantendo a relevância social. O Hip-Hop no Brasil não é apenas música; é um movimento cultural que empodera, educa e transforma vidas.
+            </p>
+        </section>
 
         <section id="legado" class="content-section alternate-bg">
-            <h2>O Legado e o Futuro</h2>
-            <p>Mais do que um gênero musical, o hip-hop é um movimento cultural que continua a inspirar, questionar e empoderar. Seu legado é vasto e seu futuro, promissor.</p>
-            </section>
+            <h2>O Legado e o Futuro: Uma Cultura em Constante Movimento</h2>
+            <p>
+                Mais do que um gênero musical, o Hip-Hop é um movimento cultural que continua a inspirar, questionar e empoderar. Seu legado é vasto e multifacetado: ele deu voz a milhões de pessoas, influenciou a moda, a arte, a linguagem e a política, e criou uma indústria multimilionária. É uma plataforma para a expressão da identidade, da resistência e da criatividade.
+            </p>
+            <p>
+                O futuro do Hip-Hop é promissor e imprevisível. Com a ascensão de novas tecnologias e a contínua fusão com outros gêneros, ele certamente continuará a evoluir, surpreender e desafiar. Sua capacidade de se reinventar, mantendo suas raízes e sua mensagem central de autenticidade e superação, garante que o Hip-Hop permanecerá como uma das forças culturais mais dinâmicas e influentes do século XXI.
+            </p>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Feira das Nações - História do Hip-Hop. Desenvolvido por Felippe da Cruz.</p>
+    <footer class="bg-dark-bg text-text-dark py-8 text-center text-sm border-t border-gray-700">
+        <p class="mb-2">&copy; 2025 Feira das Nações - História do Hip-Hop. Desenvolvido por Felippe da Cruz.</p>
         <p>Curso Inglês - Fisk - Taboão</p>
     </footer>
 
-    <script src="\js/script.js"></script>
+    <script>
+        // JavaScript para o menu mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('#navbar ul');
+
+            if (menuToggle && navUl) {
+                menuToggle.addEventListener('click', () => {
+                    navUl.classList.toggle('active');
+                });
+
+                // Fechar o menu ao clicar em um link (apenas em mobile)
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            navUl.classList.remove('active');
+                        }
+                    });
+                });
+            }
+
+            // Injetar imagens na galeria da Era de Ouro
+            const goldenAgeGallery = document.getElementById('gallery-golden-age');
+            const goldenAgeImages = [
+                { src: 'https://placehold.co/600x400/000000/FFFFFF?text=Run-DMC', caption: 'Run-DMC: Pioneiros que levaram o Hip-Hop ao mainstream.' },
+                { src: 'https://placehold.co/600x400/000000/FFFFFF?text=Public+Enemy', caption: 'Public Enemy: A voz da consciência social e política.' },
+                { src: 'https://placehold.co/600x400/000000/FFFFFF?text=N.W.A.', caption: 'N.W.A.: Revolucionando o "gangsta rap" com letras cruas.' },
+                { src: 'https://placehold.co/600x400/000000/FFFFFF?text=A+Tribe+Called+Quest', caption: 'A Tribe Called Quest: Inovação e jazz no Hip-Hop.' },
+                { src: 'https://placehold.co/600x400/000000/FFFFFF?text=Queen+Latifah', caption: 'Queen Latifah: Abrindo caminhos para mulheres no rap.' },
+                { src: 'https://placehold.co/600x400/000000/FFFFFF?text=EPMD', caption: 'EPMD: Dupla icônica da Era de Ouro com batidas pesadas.' },
+            ];
+
+            if (goldenAgeGallery) {
+                goldenAgeImages.forEach(imgData => {
+                    const figure = document.createElement('figure');
+                    figure.classList.add('gallery-item');
+                    figure.innerHTML = `
+                        <img src="${imgData.src}" alt="${imgData.caption}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                        <figcaption>${imgData.caption}</figcaption>
+                    `;
+                    goldenAgeGallery.appendChild(figure);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
