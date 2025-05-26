@@ -640,7 +640,113 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        
+        // JavaScript para o menu mobile e dropdowns
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('#navbar ul');
+            const dropdownTriggers = document.querySelectorAll('.dropdown-container .dropdown-trigger');
+
+            // Toggle do menu mobile
+            if (menuToggle && navUl) {
+                menuToggle.addEventListener('click', () => {
+                    const isExpanded = navUl.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                });
+
+                // Fechar o menu mobile ao clicar em um link
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            navUl.classList.remove('active');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
+
+            // Lógica para dropdowns no mobile (expansão ao clicar no trigger)
+            dropdownTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) { // Apenas em telas pequenas
+                        const parentLi = trigger.closest('.dropdown-container');
+                        const dropdownMenu = parentLi.querySelector('.dropdown-menu');
+                        if (dropdownMenu) {
+                            // Alterna o display do dropdown no mobile
+                            if (dropdownMenu.style.display === 'flex') {
+                                dropdownMenu.style.display = 'none';
+                                dropdownMenu.style.opacity = '0';
+                                dropdownMenu.style.visibility = 'hidden';
+                            } else {
+                                dropdownMenu.style.display = 'flex';
+                                dropdownMenu.style.opacity = '1';
+                                dropdownMenu.style.visibility = 'visible';
+                            }
+                            // Gira a seta do dropdown no mobile
+                            const svg = trigger.querySelector('svg');
+                            if (svg) {
+                                if (dropdownMenu.style.display === 'flex') {
+                                    svg.classList.add('rotate-180');
+                                } else {
+                                    svg.classList.remove('rotate-180');
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Injetar imagens na galeria da Era de Ouro
+            const goldenAgeGallery = document.getElementById('gallery-golden-age');
+            const goldenAgeImages = [
+                { src: 'assets/images/RUN-DMC Caddy.jpeg', caption: 'Run-DMC: Pioneiros que levaram o Hip-Hop ao mainstream.' },
+                { src: 'assets/images/Public Enemy.jpeg', caption: 'Public Enemy: A voz da consciência social e política.' },
+                { src: 'assets/images/NWA.jpeg', caption: 'N.W.A.: Revolucionando o "gangsta rap" com letras cruas.' },
+                { src: 'assets/images/a tribe called quest.jpeg', caption: 'A Tribe Called Quest: Inovação e jazz no Hip-Hop.' },
+                { src: 'assets/images/Queen Latifah.jpeg', caption: 'Queen Latifah: Abrindo caminhos para mulheres no rap.' },
+                { src: 'assets/images/download (15).jpeg', caption: 'EPMD: Dupla icônica da Era de Ouro com batidas pesadas.' },
+            ];
+
+            if (goldenAgeGallery) {
+                goldenAgeImages.forEach(imgData => {
+                    const figure = document.createElement('figure');
+                    figure.classList.add('gallery-item');
+                    figure.innerHTML = `
+                        <img src="${imgData.src}" alt="${imgData.caption}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                        <figcaption>${imgData.caption}</figcaption>
+                    `;
+                    goldenAgeGallery.appendChild(figure);
+                });
+            }
+        });
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        document.documentElement.classList.toggle(
+            "dark",
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+        );
+        // Whenever the user explicitly chooses light mode
+        localStorage.theme = "light";
+        // Whenever the user explicitly chooses dark mode
+        localStorage.theme = "dark";
+        // Whenever the user explicitly chooses to respect the OS preference
+        localStorage.removeItem("theme");
+        
+        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const openIcon = mobileMenuButton.querySelector('svg:first-child');
+  const closeIcon = mobileMenuButton.querySelector('svg:last-child');
+
+  mobileMenuButton.addEventListener('click', () => {
+    const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+    mobileMenuButton.setAttribute('aria-expanded', !expanded);
+    mobileMenu.classList.toggle('hidden');
+    openIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+  }); document.addEventListener('DOMContentLoaded', function() {
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+   // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -874,133 +980,6 @@
 
         // Apply default language on load
         applyLanguage(languageSwitcher.value);
-        
-        // JavaScript para o menu mobile e dropdowns
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navUl = document.querySelector('#navbar ul');
-            const dropdownTriggers = document.querySelectorAll('.dropdown-container .dropdown-trigger');
-
-            // Toggle do menu mobile
-            if (menuToggle && navUl) {
-                menuToggle.addEventListener('click', () => {
-                    const isExpanded = navUl.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isExpanded);
-                });
-
-                // Fechar o menu mobile ao clicar em um link
-                navUl.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (window.innerWidth <= 768) {
-                            navUl.classList.remove('active');
-                            menuToggle.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                });
-            }
-
-            // Lógica para dropdowns no mobile (expansão ao clicar no trigger)
-            dropdownTriggers.forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                    if (window.innerWidth <= 768) { // Apenas em telas pequenas
-                        const parentLi = trigger.closest('.dropdown-container');
-                        const dropdownMenu = parentLi.querySelector('.dropdown-menu');
-                        if (dropdownMenu) {
-                            // Alterna o display do dropdown no mobile
-                            if (dropdownMenu.style.display === 'flex') {
-                                dropdownMenu.style.display = 'none';
-                                dropdownMenu.style.opacity = '0';
-                                dropdownMenu.style.visibility = 'hidden';
-                            } else {
-                                dropdownMenu.style.display = 'flex';
-                                dropdownMenu.style.opacity = '1';
-                                dropdownMenu.style.visibility = 'visible';
-                            }
-                            // Gira a seta do dropdown no mobile
-                            const svg = trigger.querySelector('svg');
-                            if (svg) {
-                                if (dropdownMenu.style.display === 'flex') {
-                                    svg.classList.add('rotate-180');
-                                } else {
-                                    svg.classList.remove('rotate-180');
-                                }
-                            }
-                        }
-                    }
-                });
-            });
-
-            // Injetar imagens na galeria da Era de Ouro
-            const goldenAgeGallery = document.getElementById('gallery-golden-age');
-            const goldenAgeImages = [
-                { src: 'assets/images/RUN-DMC Caddy.jpeg', caption: 'Run-DMC: Pioneiros que levaram o Hip-Hop ao mainstream.' },
-                { src: 'assets/images/Public Enemy.jpeg', caption: 'Public Enemy: A voz da consciência social e política.' },
-                { src: 'assets/images/NWA.jpeg', caption: 'N.W.A.: Revolucionando o "gangsta rap" com letras cruas.' },
-                { src: 'assets/images/a tribe called quest.jpeg', caption: 'A Tribe Called Quest: Inovação e jazz no Hip-Hop.' },
-                { src: 'assets/images/Queen Latifah.jpeg', caption: 'Queen Latifah: Abrindo caminhos para mulheres no rap.' },
-                { src: 'assets/images/download (15).jpeg', caption: 'EPMD: Dupla icônica da Era de Ouro com batidas pesadas.' },
-            ];
-
-            if (goldenAgeGallery) {
-                goldenAgeImages.forEach(imgData => {
-                    const figure = document.createElement('figure');
-                    figure.classList.add('gallery-item');
-                    figure.innerHTML = `
-                        <img src="${imgData.src}" alt="${imgData.caption}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
-                        <figcaption>${imgData.caption}</figcaption>
-                    `;
-                    goldenAgeGallery.appendChild(figure);
-                });
-            }
-        });
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        document.documentElement.classList.toggle(
-            "dark",
-            localStorage.theme === "dark" ||
-            (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-        );
-        // Whenever the user explicitly chooses light mode
-        localStorage.theme = "light";
-        // Whenever the user explicitly chooses dark mode
-        localStorage.theme = "dark";
-        // Whenever the user explicitly chooses to respect the OS preference
-        localStorage.removeItem("theme");
-        
-        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const openIcon = mobileMenuButton.querySelector('svg:first-child');
-  const closeIcon = mobileMenuButton.querySelector('svg:last-child');
-
-  mobileMenuButton.addEventListener('click', () => {
-    const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
-    mobileMenuButton.setAttribute('aria-expanded', !expanded);
-    mobileMenu.classList.toggle('hidden');
-    openIcon.classList.toggle('hidden');
-    closeIcon.classList.toggle('hidden');
-  }); document.addEventListener('DOMContentLoaded', function() {
-    const backToTopBtn = document.getElementById('backToTopBtn');
-
-    function toggleBackToTopButton() {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.remove('hidden');
-        } else {
-            backToTopBtn.classList.add('hidden');
-        }
-    }
-
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    // Exibe ou oculta o botão ao rolar a página
-    window.addEventListener('scroll', toggleBackToTopButton);
-
-    // Adiciona o evento de clique para voltar ao topo
-    backToTopBtn.addEventListener('click', scrollToTop);
-});
     </script>
 </body>
 </html>
