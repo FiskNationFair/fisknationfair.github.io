@@ -230,11 +230,13 @@
             align-items: center;
             cursor: pointer;
             padding: 0.5rem 0; /* Ajuste para melhor espaçamento no link principal */
+            min-height: 2.5rem; /* Garante altura mínima para o clique/hover */
         }
 
         .dropdown-menu {
             position: absolute;
-            display: none; /* Escondido por padrão */
+            opacity: 0; /* Escondido por padrão com opacidade */
+            visibility: hidden; /* Escondido por padrão com visibilidade */
             background-color: var(--dark-bg);
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border-radius: 0.5rem;
@@ -244,10 +246,12 @@
             left: 0;
             z-index: 20;
             margin-top: 0.5rem; /* Espaçamento entre o trigger e o menu */
+            transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave */
         }
 
         .dropdown-container:hover .dropdown-menu {
-            display: block; /* Mostra no hover do container */
+            opacity: 1; /* Mostra no hover do container */
+            visibility: visible; /* Torna visível */
         }
 
         .dropdown-menu a {
@@ -330,18 +334,22 @@
 
             /* Estilos para os dropdowns no mobile */
             .dropdown-container .dropdown-menu {
-                display: none; /* Esconde por padrão no mobile */
+                opacity: 0; /* Esconde por padrão no mobile */
+                visibility: hidden;
                 position: static; /* Remove o posicionamento absoluto */
                 width: auto; /* Remove a largura fixa */
                 background-color: transparent; /* Fundo transparente */
                 box-shadow: none; /* Sem sombra */
                 padding-left: 1.5rem; /* Recuo para sub-itens */
                 margin-top: 0.5rem;
+                transition: none; /* Remove a transição para mobile para que o JS controle */
             }
 
-            /* Quando o menu mobile está ativo, mostra os dropdowns */
-            #navbar ul.active .dropdown-container .dropdown-menu {
-                display: flex; /* Mostra os dropdowns no mobile */
+            /* Quando o menu mobile está ativo e o dropdown é clicado, mostra os dropdowns */
+            #navbar ul.active .dropdown-container .dropdown-menu[style*="display: flex"] { /* Verifica o estilo inline definido pelo JS */
+                opacity: 1; /* Mostra os dropdowns no mobile */
+                visibility: visible;
+                display: flex; /* Garante que o JS o defina como flex */
                 flex-direction: column;
             }
 
@@ -625,7 +633,16 @@
                         const parentLi = trigger.closest('.dropdown-container');
                         const dropdownMenu = parentLi.querySelector('.dropdown-menu');
                         if (dropdownMenu) {
-                            dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+                            // Alterna o display do dropdown no mobile
+                            if (dropdownMenu.style.display === 'flex') {
+                                dropdownMenu.style.display = 'none';
+                                dropdownMenu.style.opacity = '0';
+                                dropdownMenu.style.visibility = 'hidden';
+                            } else {
+                                dropdownMenu.style.display = 'flex';
+                                dropdownMenu.style.opacity = '1';
+                                dropdownMenu.style.visibility = 'visible';
+                            }
                             // Gira a seta do dropdown no mobile
                             const svg = trigger.querySelector('svg');
                             if (svg) {
