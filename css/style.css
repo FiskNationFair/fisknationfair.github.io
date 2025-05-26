@@ -1,0 +1,261 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Escolha uma fonte legal, talvez do Google Fonts */
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Navegação */
+#navbar {
+    background: #222; /* Cor escura para a barra de navegação */
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Fixa a navbar no topo */
+    top: 0;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#navbar .logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+#navbar ul li {
+    margin-left: 20px;
+}
+
+#navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+#navbar ul li a:hover,
+#navbar ul li a.active { /* Classe 'active' pode ser adicionada via JS ao rolar */
+    color: #f9a826; /* Cor de destaque (ex: um dourado/amarelo) */
+}
+
+.menu-toggle {
+    display: none; /* Escondido em telas maiores */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Seção Hero (Primeira Dobra) */
+.hero-section {
+    height: 80vh; /* Altura da primeira dobra */
+    background: url('../assets/images/hero-bg.jpg') no-repeat center center/cover; /* Imagem de fundo impactante */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-section .hero-content {
+    background-color: rgba(0, 0, 0, 0.6); /* Sobreposição escura para legibilidade */
+    padding: 2rem 3rem;
+    border-radius: 10px;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #f9a826; /* Cor de destaque */
+    color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #e0941c;
+}
+
+/* Seções de Conteúdo */
+.content-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 20px auto; /* Centraliza o parágrafo */
+    color: #555;
+}
+
+.alternate-bg {
+    background-color: #e9e9e9; /* Cor de fundo alternada para variar visualmente */
+}
+
+.figure-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espaçamento entre as figuras */
+    flex-wrap: wrap; /* Permite que as imagens quebrem linha em telas menores */
+    margin-bottom: 20px;
+}
+
+.figure-container figure {
+    max-width: 300px;
+    text-align: center;
+}
+
+.figure-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
+
+.figure-container figcaption {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Grid para os 4 Elementos */
+.elements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsivo */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.element-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.element-card img {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens dos cards */
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.element-card h3 {
+    margin-bottom: 10px;
+    color: #f9a826;
+}
+
+/* Galeria de Imagens Simples (Pode ser melhorada com JS) */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.image-gallery img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #navbar ul {
+        display: none; /* Esconde a lista em telas pequenas */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px; /* Altura da navbar */
+        left: 0;
+        background: #333;
+    }
+
+    #navbar ul.active { /* Classe 'active' para mostrar o menu */
+        display: flex;
+    }
+
+    #navbar ul li {
+        text-align: center;
+        margin: 0;
+    }
+
+    #navbar ul li a {
+        display: block;
+        padding: 1rem;
+        border-bottom: 1px solid #444;
+    }
+
+    .menu-toggle {
+        display: block; /* Mostra o botão de menu */
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .content-section h2 {
+        font-size: 2rem;
+    }
+}
