@@ -374,6 +374,25 @@
                 font-size: 0.95rem;
             }
         }
+         #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 55px;
+      cursor: pointer;
+      opacity: 0;
+      /* Inicialmente invisível */
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    #backToTop.show {
+      opacity: 1;
+      /* Torna visível quando a classe 'show' é adicionada */
+    }
     </style>
 </head>
 <body class="bg-dark-bg text-text-light">
@@ -545,6 +564,13 @@
             </div>
         </section>
 
+        <button id="backToTopBtn" class="fixed bottom-5 right-5 z-10 hidden p-3 rounded-md shadow-md bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
+        <span class="sr-only">Voltar ao Topo</span>
+    </button>
+
         <section id="gangues" class="content-section alternate-bg">
             <h2>Hip-Hop, Gangues e a Realidade Social</h2>
             <p>
@@ -680,6 +706,54 @@
                 });
             }
         });
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        document.documentElement.classList.toggle(
+            "dark",
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+        );
+        // Whenever the user explicitly chooses light mode
+        localStorage.theme = "light";
+        // Whenever the user explicitly chooses dark mode
+        localStorage.theme = "dark";
+        // Whenever the user explicitly chooses to respect the OS preference
+        localStorage.removeItem("theme");
+        
+        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const openIcon = mobileMenuButton.querySelector('svg:first-child');
+  const closeIcon = mobileMenuButton.querySelector('svg:last-child');
+
+  mobileMenuButton.addEventListener('click', () => {
+    const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+    mobileMenuButton.setAttribute('aria-expanded', !expanded);
+    mobileMenu.classList.toggle('hidden');
+    openIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+  }); document.addEventListener('DOMContentLoaded', function() {
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+    function toggleBackToTopButton() {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.remove('hidden');
+        } else {
+            backToTopBtn.classList.add('hidden');
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    // Exibe ou oculta o botão ao rolar a página
+    window.addEventListener('scroll', toggleBackToTopButton);
+
+    // Adiciona o evento de clique para voltar ao topo
+    backToTopBtn.addEventListener('click', scrollToTop);
+});
     </script>
 </body>
 </html>
