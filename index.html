@@ -653,7 +653,7 @@
                         if (element.innerHTML.includes('<strong>') || element.innerHTML.includes('<em>')) {
                              element.innerHTML = translations[lang][key];
                         } else {
-                            element.textContent = translations[lang][key];
+                            element.innerHTML = translations[lang][key];
                         }
                     }
                 });
