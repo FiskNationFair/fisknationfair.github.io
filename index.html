@@ -24,6 +24,8 @@
             }
         }
     </script>
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <style>
         /* Estilos (mantidos como no original, com pequenas adições para mídia) */
         .hero-section { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; overflow: hidden; }
@@ -36,15 +38,21 @@
         .content-section p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; text-align: justify; }
         .figure-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; margin-bottom: 2rem; }
         .figure-container figure { flex: 1 1 calc(50% - 2rem); max-width: 400px; text-align: center; background-color: rgba(0, 0, 0, 0.3); padding: 1rem; border-radius: 0.75rem; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        /* Adjusted for Fancybox links */
+        .figure-container figure a { display: block; }
         .figure-container img { width: 100%; height: 250px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 0.75rem; }
         .figure-container figcaption { font-size: 0.9rem; color: var(--text-dark); }
         .elements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
         .element-card { background-color: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease; }
         .element-card:hover { transform: translateY(-5px); }
         .element-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 0.75rem; margin-bottom: 1rem; }
+        /* Adjusted for Fancybox links */
+        .element-card a { display: block; }
         .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
         .gallery-item { background-color: rgba(0, 0, 0, 0.3); border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease; }
         .gallery-item:hover { transform: scale(1.03); }
+        /* Adjusted for Fancybox links */
+        .gallery-item a { display: block; }
         .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
         .gallery-item figcaption { padding: 1rem; font-size: 0.95rem; color: var(--text-dark); text-align: center; }
         #navbar ul { display: flex; gap: 1.5rem; }
@@ -165,11 +173,15 @@
             </p>
             <div class="figure-container">
                 <figure>
-                    <img src="assets/images/dj_kool_herc.jpg" alt="DJ Kool Herc" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/dj_kool_herc.jpg" data-fancybox="origins-gallery" data-caption="DJ Kool Herc, considerado o &quot;pai do Hip-Hop&quot;, isolando os &quot;breaks&quot; das músicas para os dançarinos." data-translate-caption-key="origins_fig_kool_herc">
+                        <img src="assets/images/dj_kool_herc.jpg" alt="DJ Kool Herc" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="origins_fig_kool_herc">DJ Kool Herc, considerado o "pai do Hip-Hop", isolando os "breaks" das músicas para os dançarinos.</figcaption>
                 </figure>
                 <figure>
-                    <img src="assets/images/Africa Bambaataa.jpeg" alt="Afrika Bambaataa" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/Africa Bambaataa.jpeg" data-fancybox="origins-gallery" data-caption="Afrika Bambaataa e a Zulu Nation, promovendo paz, união e diversão através da cultura Hip-Hop." data-translate-caption-key="origins_fig_bambaataa">
+                        <img src="assets/images/Africa Bambaataa.jpeg" alt="Afrika Bambaataa" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="origins_fig_bambaataa">Afrika Bambaataa e a Zulu Nation, promovendo paz, união e diversão através da cultura Hip-Hop.</figcaption>
                 </figure>
             </div>
@@ -184,22 +196,30 @@
             <div class="elements-grid">
                 <article class="element-card">
                     <h3 data-translate-key="elements_djing_title">DJing (Discotecagem)</h3>
-                    <img src="assets/images/Dj Premier.jpeg" alt="DJing" data-translate-alt="elements_djing_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/Dj Premier.jpeg" data-fancybox="elements-gallery" data-caption="A arte de manipular toca-discos e mixers para criar batidas, ritmos e sons únicos. O DJ é o coração musical do Hip-Hop, responsável por selecionar e mixar as faixas, além de criar os &quot;breaks&quot; que impulsionam a dança e o rap." data-translate-caption-key="elements_djing_desc">
+                        <img src="assets/images/Dj Premier.jpeg" alt="DJing" data-translate-alt="elements_djing_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <p data-translate-key="elements_djing_desc">A arte de manipular toca-discos e mixers para criar batidas, ritmos e sons únicos. O DJ é o coração musical do Hip-Hop, responsável por selecionar e mixar as faixas, além de criar os "breaks" que impulsionam a dança e o rap.</p>
                 </article>
                 <article class="element-card">
                     <h3 data-translate-key="elements_mcing_title">MCing (Mestre de Cerimônias/Rap)</h3>
-                    <img src="assets/images/9b6905da7044dd1c01424111df205946.jpg" alt="MCing" data-translate-alt="elements_mcing_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/9b6905da7044dd1c01424111df205946.jpg" data-fancybox="elements-gallery" data-caption="A expressão vocal do Hip-Hop, onde o MC usa rimas, poesia e narrativa sobre as batidas do DJ. É a voz do movimento, abordando temas sociais, pessoais e políticos, e desafiando o status quo com habilidade lírica e ritmo." data-translate-caption-key="elements_mcing_desc">
+                        <img src="assets/images/9b6905da7044dd1c01424111df205946.jpg" alt="MCing" data-translate-alt="elements_mcing_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <p data-translate-key="elements_mcing_desc">A expressão vocal do Hip-Hop, onde o MC usa rimas, poesia e narrativa sobre as batidas do DJ. É a voz do movimento, abordando temas sociais, pessoais e políticos, e desafiando o status quo com habilidade lírica e ritmo.</p>
                 </article>
                 <article class="element-card">
                     <h3 data-translate-key="elements_breakdance_title">Breakdance (B-boying/B-girling)</h3>
-                    <img src="assets/images/download (13).jpeg" alt="Breakdance" data-translate-alt="elements_breakdance_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/download (13).jpeg" data-fancybox="elements-gallery" data-caption="A dança energética e acrobática que surgiu nas ruas do Bronx. Os B-boys e B-girls combinam movimentos de &quot;toprock&quot; (em pé), &quot;footwork&quot; (no chão), &quot;power moves&quot; (acrobáticos) e &quot;freezes&quot; (posições estáticas), expressando criatividade e agilidade." data-translate-caption-key="elements_breakdance_desc">
+                        <img src="assets/images/download (13).jpeg" alt="Breakdance" data-translate-alt="elements_breakdance_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <p data-translate-key="elements_breakdance_desc">A dança energética e acrobática que surgiu nas ruas do Bronx. Os B-boys e B-girls combinam movimentos de "toprock" (em pé), "footwork" (no chão), "power moves" (acrobáticos) e "freezes" (posições estáticas), expressando criatividade e agilidade.</p>
                 </article>
                 <article class="element-card">
                     <h3 data-translate-key="elements_graffiti_title">Graffiti (Arte Visual)</h3>
-                    <img src="assets/images/download (14).jpeg" alt="Graffiti" data-translate-alt="elements_graffiti_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/download (14).jpeg" data-fancybox="elements-gallery" data-caption="A arte visual do Hip-Hop, expressa através de letras estilizadas, murais coloridos e &quot;tags&quot; em espaços urbanos. O Graffiti transformou paredes e trens em galerias a céu aberto, sendo uma forma de reivindicação de espaço e identidade para os artistas." data-translate-caption-key="elements_graffiti_desc">
+                        <img src="assets/images/download (14).jpeg" alt="Graffiti" data-translate-alt="elements_graffiti_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <p data-translate-key="elements_graffiti_desc">A arte visual do Hip-Hop, expressa através de letras estilizadas, murais coloridos e "tags" em espaços urbanos. O Graffiti transformou paredes e trens em galerias a céu aberto, sendo uma forma de reivindicação de espaço e identidade para os artistas.</p>
                 </article>
             </div>
@@ -220,20 +240,28 @@
                 </div>
             </div>
             <div id="gallery-golden-age" class="image-gallery">
-                 <figure class="gallery-item">
-                    <img src="assets/images/RUN-DMC Caddy.jpeg" alt="Run-DMC" data-translate-alt="golden_age_gallery_rundmc_alt" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=Imagem+Indisponível';">
+                   <figure class="gallery-item">
+                    <a href="assets/images/RUN-DMC Caddy.jpeg" data-fancybox="golden-age-gallery" data-caption="Run-DMC" data-translate-caption-key="golden_age_gallery_rundmc_caption">
+                        <img src="assets/images/RUN-DMC Caddy.jpeg" alt="Run-DMC" data-translate-alt="golden_age_gallery_rundmc_alt" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="golden_age_gallery_rundmc_caption">Run-DMC</figcaption>
                 </figure>
                 <figure class="gallery-item">
-                    <img src="assets/images/Public Enemy.jpeg" alt="Public Enemy" data-translate-alt="golden_age_gallery_public_enemy_alt" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/Public Enemy.jpeg" data-fancybox="golden-age-gallery" data-caption="Public Enemy" data-translate-caption-key="golden_age_gallery_public_enemy_caption">
+                        <img src="assets/images/Public Enemy.jpeg" alt="Public Enemy" data-translate-alt="golden_age_gallery_public_enemy_alt" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="golden_age_gallery_public_enemy_caption">Public Enemy</figcaption>
                 </figure>
                 <figure class="gallery-item">
-                    <img src="assets/images/NWA.jpeg" alt="N.W.A." data-translate-alt="golden_age_gallery_nwa_alt" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/NWA.jpeg" data-fancybox="golden-age-gallery" data-caption="N.W.A." data-translate-caption-key="golden_age_gallery_nwa_caption">
+                        <img src="assets/images/NWA.jpeg" alt="N.W.A." data-translate-alt="golden_age_gallery_nwa_alt" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="golden_age_gallery_nwa_caption">N.W.A.</figcaption>
                 </figure>
                 <figure class="gallery-item">
-                    <img src="assets/images/Queen Latifah.jpeg" alt="Queen Latifah" data-translate-alt="golden_age_gallery_queen_latifah_alt" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/Queen Latifah.jpeg" data-fancybox="golden-age-gallery" data-caption="Queen Latifah" data-translate-caption-key="golden_age_gallery_queen_latifah_caption">
+                        <img src="assets/images/Queen Latifah.jpeg" alt="Queen Latifah" data-translate-alt="golden_age_gallery_queen_latifah_alt" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="golden_age_gallery_queen_latifah_caption">Queen Latifah</figcaption>
                 </figure>
             </div>
@@ -252,17 +280,21 @@
             </p>
             <div class="figure-container">
                 <figure>
-                    <img src="assets/images/download (16).jpeg" alt="Eminem" data-translate-alt="s2000_fig_eminem_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/download (16).jpeg" data-fancybox="s2000-gallery" data-caption="Eminem, um dos artistas mais vendidos dos anos 2000, expandindo o alcance do rap." data-translate-caption-key="s2000_fig_eminem_caption">
+                        <img src="assets/images/download (16).jpeg" alt="Eminem" data-translate-alt="s2000_fig_eminem_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="s2000_fig_eminem_caption">Eminem, um dos artistas mais vendidos dos anos 2000, expandindo o alcance do rap.</figcaption>
                 </figure>
                 <figure>
-                    <img src="assets/images/Graduation - Kanye West.jpeg" alt="Kanye West" data-translate-alt="s2000_fig_kanye_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/Graduation - Kanye West.jpeg" data-fancybox="s2000-gallery" data-caption="Kanye West, um produtor e MC que redefiniu a sonoridade do Hip-Hop na década." data-translate-caption-key="s2000_fig_kanye_caption">
+                        <img src="assets/images/Graduation - Kanye West.jpeg" alt="Kanye West" data-translate-alt="s2000_fig_kanye_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="s2000_fig_kanye_caption">Kanye West, um produtor e MC que redefiniu a sonoridade do Hip-Hop na década.</figcaption>
                 </figure>
             </div>
             <div class="audio-player-container">
                 <h4 data-translate-key="s2000_audio_title">Hino dos Anos 2000: Ouça um Clássico</h4>
-                <audio controls src="assets/audios/Ja Rule, Fat Joe, Jadakiss -  New York.mp3" class="rounded-md"> 
+                <audio controls src="assets/audios/Ja Rule, Fat Joe, Jadakiss - New York.mp3" class="rounded-md"> 
                     <span data-translate-key="audio_unsupported">Seu navegador não suporta o elemento de áudio.</span>
                 </audio>
                 <p class="text-sm text-center mt-2 text-text-dark" data-translate-key="s2000_audio_desc">Ja Rule, Fat Joe, Jadakiss - New York</p>
@@ -298,91 +330,109 @@
             </p>
             <div class="figure-container">
                 <figure>
-                    <img src="assets/images/download (17).jpeg" alt="Moda Hip-Hop Old School" data-translate-alt="fashion_fig_old_school_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    <a href="assets/images/download (17).jpeg" data-fancybox="fashion-gallery" data-caption="Estilo icônico da Old School, com agasalhos e tênis clássicos." data-translate-caption-key="fashion_fig_old_school_caption">
+                        <img src="assets/images/download (17).jpeg" alt="Moda Hip-Hop Old School" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
                     <figcaption data-translate-key="fashion_fig_old_school_caption">Estilo icônico da Old School, com agasalhos e tênis clássicos.</figcaption>
                 </figure>
                 <figure>
-                    <img src="assets/images/⚜.jpeg" alt="Moda Hip-Hop Atual" data-translate-alt="fashion_fig_current_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
-                    <figcaption data-translate-key="fashion_fig_current_caption">A moda Hip-Hop contemporânea, misturando streetwear e luxo.</figcaption>
+                    <a href="assets/images/hip-hop-fashion-trends-blog-main-image-800x485.webp" data-fancybox="fashion-gallery" data-caption="A moda Hip-Hop continua a evoluir, influenciando o streetwear e a alta costura." data-translate-caption-key="fashion_fig_current_caption">
+                        <img src="assets/images/hip-hop-fashion-trends-blog-main-image-800x485.webp" alt="Moda Hip-Hop Atual" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
+                    <figcaption data-translate-key="fashion_fig_current_caption">A moda Hip-Hop continua a evoluir, influenciando o streetwear e a alta costura.</figcaption>
                 </figure>
             </div>
         </section>
 
         <section id="gangues" class="content-section">
-            <h2 data-translate-key="gangs_title">Hip-Hop, Gangues e a Realidade Social</h2>
-            <p data-translate-key="gangs_p1">
-                A relação entre o Hip-Hop e a cultura de gangues é um tema complexo e muitas vezes mal compreendido. Nascido em um ambiente de adversidade e violência urbana, o Hip-Hop, em parte, surgiu como uma alternativa à vida nas ruas e à filiação a gangues, oferecendo uma saída criativa e uma forma de competição pacífica através da arte. No entanto, a realidade das gangues e suas consequências também se tornaram um tema recorrente nas letras de rap, especialmente no "gangsta rap".
+            <h2 data-translate-key="gangs_society_title">Gangues e Sociedade: Desafios e Resiliência</h2>
+            <p data-translate-key="gangs_society_p1">
+                Desde suas raízes no Bronx, o Hip-Hop esteve intrinsicamente ligado às realidades sociais e econômicas enfrentadas por comunidades marginalizadas, incluindo a presença de gangues. No entanto, o movimento emergiu como uma alternativa poderosa à violência, oferecendo um caminho para a expressão criativa, o reconhecimento e a união.
             </p>
-            <p data-translate-key="gangs_p2">
-                Artistas usaram suas músicas para narrar as experiências de violência, pobreza e marginalização, dando voz a uma realidade que muitas vezes era ignorada pela sociedade dominante. Embora a representação de gangues no Hip-Hop tenha gerado controvérsias e críticas, ela também serviu como um espelho para as condições sociais, um chamado à atenção para os problemas enfrentados por jovens em áreas urbanas. Muitos artistas e líderes do Hip-Hop têm trabalhado ativamente para promover a paz, a educação e o empoderamento, utilizando a cultura como uma ferramenta para desviar jovens da violência e construir comunidades mais fortes.
+            <p data-translate-key="gangs_society_p2">
+                A cultura Hip-Hop, em muitos aspectos, transformou a energia destrutiva das rivalidades de gangues em competições artísticas pacíficas, como batalhas de rap, breakdance e grafite. Figuras como Afrika Bambaataa, um ex-líder de gangue, canalizaram sua influência para promover a paz e a elevação da comunidade através da Universal Zulu Nation. Embora a representação da vida nas ruas e suas complexidades permaneça um tema no rap, a cultura como um todo tem sido uma força para a resiliência e a transformação social, proporcionando voz e oportunidades para muitos jovens.
             </p>
             <div class="figure-container">
                 <figure>
-                    <img src="assets/images/4 elements of Hip Hop.jpeg" alt="Cultura de Rua e Hip-Hop" data-translate-alt="gangs_fig_street_culture_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
-                    <figcaption data-translate-key="gangs_fig_street_culture_caption">A cultura de rua, berço do Hip-Hop, onde a arte se tornou uma alternativa à violência.</figcaption>
-                </figure>
-                <figure>
-                    <img src="assets/images/download (19).jpeg" alt="Mensagem de Paz no Hip-Hop" data-translate-alt="gangs_fig_peace_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
-                    <figcaption data-translate-key="gangs_fig_peace_caption">Artistas e ativistas do Hip-Hop promovendo a paz e a união em suas comunidades.</figcaption>
+                    <a href="assets/images/gangs.jpeg" data-fancybox="gangs-gallery" data-caption="Graffiti em um muro, expressando a complexidade das ruas e a arte como forma de expressão." data-translate-caption-key="gangs_society_fig_graffiti_caption">
+                        <img src="assets/images/gangs.jpeg" alt="Graffiti e Sociedade" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
+                    <figcaption data-translate-key="gangs_society_fig_graffiti_caption">Graffiti em um muro, expressando a complexidade das ruas e a arte como forma de expressão.</figcaption>
                 </figure>
             </div>
         </section>
 
         <section id="global" class="content-section alternate-bg">
-            <h2 data-translate-key="global_impact_title_section">Impacto Global e Evolução Contínua</h2>
+            <h2 data-translate-key="global_impact_title">Impacto Global: O Hip-Hop Pelo Mundo</h2>
             <p data-translate-key="global_impact_p1">
-                O Hip-Hop transcendeu as ruas do Bronx para se tornar um fenômeno cultural global, influenciando não apenas a música, mas também a moda, a linguagem, o cinema, a arte e o ativismo social em todos os continentes. Sua adaptabilidade permitiu que se fundisse com culturas locais, criando cenas vibrantes em países como França, Japão, Brasil, Coreia do Sul e muitos outros.
+                O Hip-Hop transcendeu suas origens no Bronx para se tornar um fenômeno cultural global. Sua mensagem de autoexpressão, resiliência e a busca por justiça social ressoou em todas as partes do mundo, adaptando-se e misturando-se com as culturas locais, criando subgêneros e movimentos únicos em cada país.
             </p>
-             <p data-translate-key="global_impact_p2">
-                Hoje, o Hip-Hop continua a evoluir, com novos subgêneros, artistas e plataformas digitais impulsionando sua inovação. Da ascensão do Trap e do Drill à popularidade do rap consciente e experimental, o gênero permanece uma força dinâmica e relevante, refletindo e moldando as conversas culturais contemporâneas. Seu legado é inegável, e seu futuro promete ainda mais transformações e impacto.
+            <p data-translate-key="global_impact_p2">
+                Da França ao Japão, da África do Sul ao Brasil, o Hip-Hop se tornou uma plataforma para vozes diversas, abordando questões locais e globais. O breaking tornou-se um esporte olímpico, e o rap é frequentemente o gênero musical mais consumido em muitos países. Essa expansão global é um testemunho da universalidade de seus temas e da adaptabilidade de seus elementos, provando que o Hip-Hop é verdadeiramente uma força unificadora e transformadora em escala mundial.
             </p>
+            <div class="figure-container">
+                <figure>
+                    <a href="assets/images/global_hip_hop.jpeg" data-fancybox="global-gallery" data-caption="Jovens em uma manifestação de Hip-Hop na África do Sul, mostrando o alcance global do movimento." data-translate-caption-key="global_impact_fig_global_caption">
+                        <img src="assets/images/global_hip_hop.jpeg" alt="Hip-Hop Global" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
+                    <figcaption data-translate-key="global_impact_fig_global_caption">Jovens em uma manifestação de Hip-Hop na África do Sul, mostrando o alcance global do movimento.</figcaption>
+                </figure>
+            </div>
         </section>
 
         <section id="brasil" class="content-section">
-            <h2 data-translate-key="brazil_title">Hip-Hop no Brasil: Identidade e Resistência</h2>
+            <h2 data-translate-key="brazil_title">Hip-Hop no Brasil: Uma Voz das Periferias</h2>
             <p data-translate-key="brazil_p1">
-                O Hip-Hop chegou ao Brasil no início dos anos 80, principalmente em São Paulo, e rapidamente se tornou uma voz poderosa para as periferias urbanas. Grupos pioneiros como Racionais MC's, Thaíde & DJ Hum, e RZO adaptaram os elementos do Hip-Hop à realidade brasileira, abordando temas como desigualdade social, racismo, violência policial e a vida nas favelas.
+                No Brasil, o Hip-Hop chegou com força nos anos 80, ganhando raízes profundas nas periferias das grandes cidades. Longe de ser uma mera cópia do movimento americano, o Hip-Hop brasileiro desenvolveu sua própria identidade, tornando-se uma ferramenta potente para a denúncia social, a valorização da cultura afro-brasileira e a luta por direitos e reconhecimento.
             </p>
             <p data-translate-key="brazil_p2">
-                O rap nacional desenvolveu uma identidade única, com letras contundentes e uma forte conexão com as questões sociais do país. O breakdance e o graffiti também floresceram, transformando espaços públicos e dando visibilidade a talentos das comunidades. Hoje, o Hip-Hop brasileiro é uma cena diversa e consolidada, com artistas de diferentes gerações e estilos que continuam a usar a cultura como ferramenta de expressão, denúncia e empoderamento.
+                Artistas como Racionais MC's, Gabriel o Pensador, Marcelo D2 e MV Bill tornaram-se ícones, abordando em suas letras temas como desigualdade, racismo, violência policial e a realidade das favelas. O graffiti brasileiro, com seus estilos vibrantes, e o breakdance, com suas crews inovadoras, também se estabeleceram como expressões artísticas importantes. O Hip-Hop no Brasil é mais do que música e dança; é um movimento de resistência, educação e transformação social, que continua a dar voz a milhões e a inspirar mudanças.
             </p>
-             <div class="figure-container">
+            <div class="figure-container">
                 <figure>
-                    <img src="assets/images/racionais wallpaper.jpeg" alt="Racionais MC's" data-translate-alt="brazil_fig_racionais_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
-                    <figcaption data-translate-key="brazil_fig_racionais_caption">Racionais MC's, um dos grupos mais influentes do Hip-Hop brasileiro.</figcaption>
+                    <a href="assets/images/Racionais_MCs.jpeg" data-fancybox="brazil-gallery" data-caption="Racionais MC's, grupo icônico do rap brasileiro, representando a voz das periferias." data-translate-caption-key="brazil_fig_racionais_caption">
+                        <img src="assets/images/Racionais_MCs.jpeg" alt="Racionais MC's" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
+                    <figcaption data-translate-key="brazil_fig_racionais_caption">Racionais MC's, grupo icônico do rap brasileiro, representando a voz das periferias.</figcaption>
                 </figure>
                 <figure>
-                    <img src="assets/images/download (20).jpeg" alt="Graffiti no Brasil" data-translate-alt="brazil_fig_graffiti_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
-                    <figcaption data-translate-key="brazil_fig_graffiti_caption">O Graffiti como expressão artística e social nas cidades brasileiras.</figcaption>
+                    <a href="assets/images/graffiti_brazil.jpeg" data-fancybox="brazil-gallery" data-caption="Graffiti vibrante em São Paulo, uma manifestação da arte de rua no Brasil." data-translate-caption-key="brazil_fig_graffiti_caption">
+                        <img src="assets/images/graffiti_brazil.jpeg" alt="Graffiti Brasileiro" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
+                    <figcaption data-translate-key="brazil_fig_graffiti_caption">Graffiti vibrante em São Paulo, uma manifestação da arte de rua no Brasil.</figcaption>
                 </figure>
             </div>
         </section>
 
         <section id="legado" class="content-section alternate-bg">
-            <h2 data-translate-key="legacy_title_section">O Legado Duradouro do Hip-Hop</h2>
+            <h2 data-translate-key="legacy_title">O Legado e o Futuro do Hip-Hop</h2>
             <p data-translate-key="legacy_p1">
-                Mais do que um gênero musical, o Hip-Hop é um movimento cultural que redefiniu a paisagem artística e social global. Seu legado vai além das paradas de sucesso; ele deu voz aos marginalizados, desafiou o status quo, promoveu a criatividade e construiu comunidades. A influência do Hip-Hop pode ser vista na música, moda, arte, linguagem e ativismo em todo o mundo.
+                O legado do Hip-Hop é imenso e multifacetado. De um movimento de contra-cultura nas ruas do Bronx, ele se transformou em uma força cultural e econômica dominante, influenciando música, moda, arte, linguagem e política em todo o mundo. Mais do que entretenimento, o Hip-Hop deu voz a comunidades marginalizadas, promoveu a autoexpressão e serviu como uma plataforma para a mudança social.
             </p>
             <p data-translate-key="legacy_p2">
-                De suas origens humildes no Bronx às arenas globais, o Hip-Hop provou ser uma força resiliente e adaptável, continuamente se reinventando enquanto permanece fiel às suas raízes de expressão autêntica e empoderamento. Seu impacto nas gerações passadas, presentes e futuras é inegável, solidificando seu lugar como uma das culturas mais influentes da história moderna.
+                O futuro do Hip-Hop promete continuar sua evolução, com novas fusões de gêneros, inovações tecnológicas e a ascensão de novas vozes de todas as partes do planeta. Sua capacidade de se adaptar, de absorver e de inspirar o novo garante que sua influência continuará a moldar a cultura global por muitas décadas. O Hip-Hop não é apenas uma história; é uma jornada contínua de criatividade, resiliência e impacto cultural sem precedentes.
             </p>
+            <div class="figure-container">
+                <figure>
+                    <a href="https://placehold.co/600x400/000000/FFFFFF?text=Futuro+do+Hip-Hop" data-fancybox="legacy-gallery" data-caption="O Hip-Hop continua a evoluir e inspirar novas gerações." data-translate-caption-key="legacy_fig_future_caption">
+                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=Futuro+do+Hip-Hop" alt="Futuro do Hip-Hop" data-translate-alt="legacy_fig_future_alt" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=Imagem+Indisponível';">
+                    </a>
+                    <figcaption data-translate-key="legacy_fig_future_caption">O Hip-Hop continua a evoluir e inspirar novas gerações.</figcaption>
+                </figure>
+            </div>
         </section>
     </main>
 
-    <footer class="bg-light-dark-bg text-text-dark py-8 text-center border-t border-gray-700">
-        <p><span data-translate-key="footer_copyright_prefix">© </span> <span id="currentYear"></span> <span data-translate-key="footer_copyright_suffix"> História do Hip-Hop. Todos os direitos reservados.</span></p>
-        <p class="text-sm mt-2" data-translate-key="footer_developed_by">Desenvolvido como uma homenagem à cultura Hip-Hop.</p>
+    <footer class="bg-dark-bg text-text-dark text-center py-8 border-t border-gray-700">
+        <p data-translate-key="footer_text">&copy; 2024 A História do Hip-Hop. Todos os direitos reservados.</p>
     </footer>
 
-    <button id="backToTopBtn" title="Voltar ao Topo" data-translate-title="back_to_top_title">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
-        </svg>
-        <span class="sr-only" data-translate-key="back_to_top_sr">Voltar ao Topo</span>
+    <button id="backToTopBtn" aria-label="Voltar ao topo" data-translate-aria-label="back_to_top_aria_label">
+        ↑
     </button>
 
+    <!-- Translation data -->
     <script>
-        // Objeto de Traduções
         const translations = {
             pt: {
                 logo_text: "Hip-Hop: A Jornada",
@@ -403,10 +453,10 @@
                 lang_pt: "Português",
                 lang_en: "English",
                 menu_toggle_open_aria: "Abrir menu",
-                video_unsupported: "Seu navegador não suporta a tag de vídeo.",
                 hero_title: "Bem-vindos à História do Hip-Hop",
                 hero_subtitle: "Das ruas do Bronx para o mundo: uma revolução cultural.",
                 hero_cta: "Descubra Mais",
+                video_unsupported: "Seu navegador não suporta a tag de vídeo.",
                 origins_title: "As Origens: O Berço no Bronx (Anos 70)",
                 origins_p1: "O Hip-Hop não é apenas um gênero musical, mas uma cultura vibrante que nasceu das cinzas de um Bronx em crise no final dos anos 1970. Em meio a desafios sociais e econômicos, com bairros marcados pelo abandono e pela violência, jovens criativos encontraram nas festas de rua — as lendárias <strong>Block Parties</strong> — um refúgio e uma poderosa forma de expressão. Essas celebrações comunitárias, muitas vezes realizadas em parques ou edifícios abandonados, eram o palco para a inovação e o surgimento de uma nova voz.",
                 origins_block_parties_strong: "Block Parties",
@@ -471,8 +521,7 @@
                 featured_media_title: "Mídia Destacada: Vídeos e Músicas",
                 featured_media_intro: "Explore alguns dos vídeos e músicas que marcaram a trajetória do Hip-Hop. Mergulhe nos sons e visuais que definiram gerações e continuam a inspirar artistas em todo o mundo.",
                 featured_media_video_title: "Vídeo em Destaque: A Evolução do Hip-Hop",
-                featured_media_video_iframe_title: "Exemplo de Playlist de Documentário sobre Hip-Hop",
-                featured_media_video_desc: "Veja acima um vídeo mostrando um pouco da evolução do Hip-Hop",
+                featured_media_video_desc: "A Evolução do Hip-Hop",
                 featured_media_audio_title: "Playlist Essencial do Hip-Hop",
                 audio_unsupported_featured: "Seu navegador não suporta o elemento de áudio.",
                 featured_media_audio_desc: "Exemplo: SoundHelix Song 2 (Substitua pela sua música ou playlist)",
@@ -482,32 +531,31 @@
                 fashion_fig_old_school_alt: "Moda Hip-Hop Old School",
                 fashion_fig_old_school_caption: "Estilo icônico da Old School, com agasalhos e tênis clássicos.",
                 fashion_fig_current_alt: "Moda Hip-Hop Atual",
-                fashion_fig_current_caption: "A moda Hip-Hop contemporânea, misturando streetwear e luxo.",
-                gangs_title: "Hip-Hop, Gangues e a Realidade Social",
-                gangs_p1: "A relação entre o Hip-Hop e a cultura de gangues é um tema complexo e muitas vezes mal compreendido. Nascido em um ambiente de adversidade e violência urbana, o Hip-Hop, em parte, surgiu como uma alternativa à vida nas ruas e à filiação a gangues, oferecendo uma saída criativa e uma forma de competição pacífica através da arte. No entanto, a realidade das gangues e suas consequências também se tornaram um tema recorrente nas letras de rap, especialmente no \"gangsta rap\".",
-                gangs_p2: "Artistas usaram suas músicas para narrar as experiências de violência, pobreza e marginalização, dando voz a uma realidade que muitas vezes era ignorada pela sociedade dominante. Embora a representação de gangues no Hip-Hop tenha gerado controvérsias e críticas, ela também serviu como um espelho para as condições sociais, um chamado à atenção para os problemas enfrentados por jovens em áreas urbanas. Muitos artistas e líderes do Hip-Hop têm trabalhado ativamente para promover a paz, a educação e o empoderamento, utilizando a cultura como uma ferramenta para desviar jovens da violência e construir comunidades mais fortes.",
-                gangs_fig_street_culture_alt: "Cultura de Rua e Hip-Hop",
-                gangs_fig_street_culture_caption: "A cultura de rua, berço do Hip-Hop, onde a arte se tornou uma alternativa à violência.",
-                gangs_fig_peace_alt: "Mensagem de Paz no Hip-Hop",
-                gangs_fig_peace_caption: "Artistas e ativistas do Hip-Hop promovendo a paz e a união em suas comunidades.",
-                global_impact_title_section: "Impacto Global e Evolução Contínua",
-                global_impact_p1: "O Hip-Hop transcendeu as ruas do Bronx para se tornar um fenômeno cultural global, influenciando não apenas a música, mas também a moda, a linguagem, o cinema, a arte e o ativismo social em todos os continentes. Sua adaptabilidade permitiu que se fundisse com culturas locais, criando cenas vibrantes em países como França, Japão, Brasil, Coreia do Sul e muitos outros.",
-                global_impact_p2: "Hoje, o Hip-Hop continua a evoluir, com novos subgêneros, artistas e plataformas digitais impulsionando sua inovação. Da ascensão do Trap e do Drill à popularidade do rap consciente e experimental, o gênero permanece uma força dinâmica e relevante, refletindo e moldando as conversas culturais contemporâneas. Seu legado é inegável, e seu futuro promete ainda mais transformações e impacto.",
-                brazil_title: "Hip-Hop no Brasil: Identidade e Resistência",
-                brazil_p1: "O Hip-Hop chegou ao Brasil no início dos anos 80, principalmente em São Paulo, e rapidamente se tornou uma voz poderosa para as periferias urbanas. Grupos pioneiros como Racionais MC's, Thaíde & DJ Hum, e RZO adaptaram os elementos do Hip-Hop à realidade brasileira, abordando temas como desigualdade social, racismo, violência policial e a vida nas favelas.",
-                brazil_p2: "O rap nacional desenvolveu uma identidade única, com letras contundentes e uma forte conexão com as questões sociais do país. O breakdance e o graffiti também floresceram, transformando espaços públicos e dando visibilidade a talentos das comunidades. Hoje, o Hip-Hop brasileiro é uma cena diversa e consolidada, com artistas de diferentes gerações e estilos que continuam a usar a cultura como ferramenta de expressão, denúncia e empoderamento.",
+                fashion_fig_current_caption: "A moda Hip-Hop continua a evoluir, influenciando o streetwear e a alta costura.",
+                gangs_society_title: "Gangues e Sociedade: Desafios e Resiliência",
+                gangs_society_p1: "Desde suas raízes no Bronx, o Hip-Hop esteve intrinsicamente ligado às realidades sociais e econômicas enfrentadas por comunidades marginalizadas, incluindo a presença de gangues. No entanto, o movimento emergiu como uma alternativa poderosa à violência, oferecendo um caminho para a expressão criativa, o reconhecimento e a união.",
+                gangs_society_p2: "A cultura Hip-Hop, em muitos aspectos, transformou a energia destrutiva das rivalidades de gangues em competições artísticas pacíficas, como batalhas de rap, breakdance e grafite. Figuras como Afrika Bambaataa, um ex-líder de gangue, canalizaram sua influência para promover a paz e a elevação da comunidade através da Universal Zulu Nation. Embora a representação da vida nas ruas e suas complexidades permaneça um tema no rap, a cultura como um todo tem sido uma força para a resiliência e a transformação social, proporcionando voz e oportunidades para muitos jovens.",
+                gangs_society_fig_graffiti_caption: "Graffiti em um muro, expressando a complexidade das ruas e a arte como forma de expressão.",
+                gangs_society_fig_graffiti_alt: "Graffiti e Sociedade",
+                global_impact_title: "Impacto Global: O Hip-Hop Pelo Mundo",
+                global_impact_p1: "O Hip-Hop transcendeu suas origens no Bronx para se tornar um fenômeno cultural global. Sua mensagem de autoexpressão, resiliência e a busca por justiça social ressoou em todas as partes do mundo, adaptando-se e misturando-se com as culturas locais, criando subgêneros e movimentos únicos em cada país.",
+                global_impact_p2: "Da França ao Japão, da África do Sul ao Brasil, o Hip-Hop se tornou uma plataforma para vozes diversas, abordando questões locais e globais. O breaking tornou-se um esporte olímpico, e o rap é frequentemente o gênero musical mais consumido em muitos países. Essa expansão global é um testemunho da universalidade de seus temas e da adaptabilidade de seus elementos, provando que o Hip-Hop é verdadeiramente uma força unificadora e transformadora em escala mundial.",
+                global_impact_fig_global_caption: "Jovens em uma manifestação de Hip-Hop na África do Sul, mostrando o alcance global do movimento.",
+                global_impact_fig_global_alt: "Hip-Hop Global",
+                brazil_title: "Hip-Hop no Brasil: Uma Voz das Periferias",
+                brazil_p1: "No Brasil, o Hip-Hop chegou com força nos anos 80, ganhando raízes profundas nas periferias das grandes cidades. Longe de ser uma mera cópia do movimento americano, o Hip-Hop brasileiro desenvolveu sua própria identidade, tornando-se uma ferramenta potente para a denúncia social, a valorização da cultura afro-brasileira e a luta por direitos e reconhecimento.",
+                brazil_p2: "Artistas como Racionais MC's, Gabriel o Pensador, Marcelo D2 e MV Bill tornaram-se ícones, abordando em suas letras temas como desigualdade, racismo, violência policial e a realidade das favelas. O graffiti brasileiro, com seus estilos vibrantes, e o breakdance, com suas crews inovadoras, também se estabeleceram como expressões artísticas importantes. O Hip-Hop no Brasil é mais do que música e dança; é um movimento de resistência, educação e transformação social, que continua a dar voz a milhões e a inspirar mudanças.",
+                brazil_fig_racionais_caption: "Racionais MC's, grupo icônico do rap brasileiro, representando a voz das periferias.",
                 brazil_fig_racionais_alt: "Racionais MC's",
-                brazil_fig_racionais_caption: "Racionais MC's, um dos grupos mais influentes do Hip-Hop brasileiro.",
-                brazil_fig_graffiti_alt: "Graffiti no Brasil",
-                brazil_fig_graffiti_caption: "O Graffiti como expressão artística e social nas cidades brasileiras.",
-                legacy_title_section: "O Legado Duradouro do Hip-Hop",
-                legacy_p1: "Mais do que um gênero musical, o Hip-Hop é um movimento cultural que redefiniu a paisagem artística e social global. Seu legado vai além das paradas de sucesso; ele deu voz aos marginalizados, desafiou o status quo, promoveu a criatividade e construiu comunidades. A influência do Hip-Hop pode ser vista na música, moda, arte, linguagem e ativismo em todo o mundo.",
-                legacy_p2: "De suas origens humildes no Bronx às arenas globais, o Hip-Hop provou ser uma força resiliente e adaptável, continuamente se reinventando enquanto permanece fiel às suas raízes de expressão autêntica e empoderamento. Seu impacto nas gerações passadas, presentes e futuras é inegável, solidificando seu lugar como uma das culturas mais influentes da história moderna.",
-                footer_copyright_prefix: "© ",
-                footer_copyright_suffix: " História do Hip-Hop. Todos os direitos reservados.",
-                footer_developed_by: "Desenvolvido como uma homenagem à cultura Hip-Hop.",
-                back_to_top_title: "Voltar ao Topo",
-                back_to_top_sr: "Voltar ao Topo"
+                brazil_fig_graffiti_caption: "Graffiti vibrante em São Paulo, uma manifestação da arte de rua no Brasil.",
+                brazil_fig_graffiti_alt: "Graffiti Brasileiro",
+                legacy_title: "O Legado e o Futuro do Hip-Hop",
+                legacy_p1: "O legado do Hip-Hop é imenso e multifacetado. De um movimento de contra-cultura nas ruas do Bronx, ele se transformou em uma força cultural e econômica dominante, influenciando música, moda, arte, linguagem e política em todo o mundo. Mais do que entretenimento, o Hip-Hop deu voz a comunidades marginalizadas, promoveu a autoexpressão e serviu como uma plataforma para a mudança social.",
+                legacy_p2: "O futuro do Hip-Hop promete continuar sua evolução, com novas fusões de gêneros, inovações tecnológicas e a ascensão de novas vozes de todas as partes do planeta. Sua capacidade de se adaptar, de absorver e de inspirar o novo garante que sua influência continuará a moldar a cultura global por muitas décadas. O Hip-Hop não é apenas uma história; é uma jornada contínua de criatividade, resiliência e impacto cultural sem precedentes.",
+                legacy_fig_future_caption: "O Hip-Hop continua a evoluir e inspirar novas gerações.",
+                legacy_fig_future_alt: "Futuro do Hip-Hop",
+                footer_text: "&copy; 2024 A História do Hip-Hop. Todos os direitos reservados.",
+                back_to_top_aria_label: "Back to top"
             },
             en: {
                 logo_text: "Hip-Hop: The Journey",
@@ -525,39 +573,39 @@
                 nav_regional_future_group: "Regional & Future",
                 nav_brazil: "Hip-Hop in Brazil",
                 nav_legacy: "Legacy",
-                lang_pt: "Português",
+                lang_pt: "Portuguese",
                 lang_en: "English",
                 menu_toggle_open_aria: "Open menu",
-                video_unsupported: "Your browser does not support the video tag.",
                 hero_title: "Welcome to the History of Hip-Hop",
                 hero_subtitle: "From the streets of the Bronx to the world: a cultural revolution.",
                 hero_cta: "Discover More",
-                origins_title: "The Origins: The Birthplace in the Bronx (70s)",
-                origins_p1: "Hip-Hop is not just a musical genre, but a vibrant culture born from the ashes of a Bronx in crisis in the late 1970s. Amidst social and economic challenges, with neighborhoods marked by neglect and violence, creative young people found in street parties — the legendary <strong>Block Parties</strong> — a refuge and a powerful form of expression. These community celebrations, often held in parks or abandoned buildings, were the stage for innovation and the emergence of a new voice.",
+                video_unsupported: "Your browser does not support the video tag.",
+                origins_title: "The Origins: The Birthplace in the Bronx (1970s)",
+                origins_p1: "Hip-Hop is not just a musical genre, but a vibrant culture that was born from the ashes of a crisis-ridden Bronx in the late 1970s. Amidst social and economic challenges, with neighborhoods marked by abandonment and violence, creative young people found in street parties — the legendary <strong>Block Parties</strong> — a refuge and a powerful form of expression. These community celebrations, often held in parks or abandoned buildings, were the stage for innovation and the emergence of a new voice.",
                 origins_block_parties_strong: "Block Parties",
-                origins_fig_kool_herc: "DJ Kool Herc, considered the \"father of Hip-Hop,\" isolating the \"breaks\" from songs for the dancers.",
+                origins_fig_kool_herc: "DJ Kool Herc, considered the \"father of Hip-Hop,\" isolating the \"breaks\" of songs for dancers.",
                 origins_fig_bambaataa: "Afrika Bambaataa and the Zulu Nation, promoting peace, unity, and fun through Hip-Hop culture.",
-                origins_p2: "Pioneers like <strong>DJ Kool Herc</strong>, <strong>Afrika Bambaataa</strong>, and <strong>Grandmaster Flash</strong> were fundamental, innovating with mixing techniques, scratching, and creating the movement's foundational sound. They transformed DJing into a performance art, giving rise to the \"breaks\" that would become the foundation for MCs and B-boys.",
+                origins_p2: "Pioneers like <strong>DJ Kool Herc</strong>, <strong>Afrika Bambaataa</strong>, and <strong>Grandmaster Flash</strong> were fundamental, innovating with mixing techniques, \"scratching,\" and creating the basic sound of the movement. They transformed disc jockeying into a performative art, giving rise to the \"breaks\" that would become the foundation for MCs and B-boys.",
                 origins_kool_herc_strong: "DJ Kool Herc",
                 origins_bambaataa_strong: "Afrika Bambaataa",
                 origins_flash_strong: "Grandmaster Flash",
                 elements_title: "The Four Fundamental Elements",
                 elements_intro: "Hip-Hop culture is composed of four interconnected pillars, each contributing to its richness and diversity:",
-                elements_djing_title: "DJing",
+                elements_djing_title: "DJing (Disc Jockeying)",
                 elements_djing_alt: "DJing",
-                elements_djing_desc: "The art of manipulating turntables and mixers to create unique beats, rhythms, and sounds. The DJ is the musical heart of Hip-Hop, responsible for selecting and mixing tracks, as well as creating the \"breaks\" that drive dance and rap.",
+                elements_djing_desc: "The art of manipulating turntables and mixers to create unique beats, rhythms, and sounds. The DJ is the musical heart of Hip-Hop, responsible for selecting and mixing tracks, as well as creating the \"breaks\" that drive the dance and rap.",
                 elements_mcing_title: "MCing (Master of Ceremonies/Rap)",
                 elements_mcing_alt: "MCing",
                 elements_mcing_desc: "The vocal expression of Hip-Hop, where the MC uses rhymes, poetry, and narrative over the DJ's beats. It is the voice of the movement, addressing social, personal, and political themes, and challenging the status quo with lyrical skill and rhythm.",
                 elements_breakdance_title: "Breakdance (B-boying/B-girling)",
                 elements_breakdance_alt: "Breakdance",
-                elements_breakdance_desc: "The energetic and acrobatic dance that emerged from the streets of the Bronx. B-boys and B-girls combine \"toprock\" (standing), \"footwork\" (on the floor), \"power moves\" (acrobatic), and \"freezes\" (static positions), expressing creativity and agility.",
+                elements_breakdance_desc: "The energetic and acrobatic dance that emerged in the streets of the Bronx. B-boys and B-girls combine \"toprock\" (standing), \"footwork\" (on the ground), \"power moves\" (acrobatic), and \"freezes\" (static positions), expressing creativity and agility.",
                 elements_graffiti_title: "Graffiti (Visual Art)",
                 elements_graffiti_alt: "Graffiti",
-                elements_graffiti_desc: "The visual art of Hip-Hop, expressed through stylized letters, colorful murals, and \"tags\" in urban spaces. Graffiti transformed walls and trains into open-air galleries, serving as a way for artists to claim space and identity.",
-                golden_age_title: "The Golden Age (80s and Early 90s)",
-                golden_age_p1: "This period, stretching roughly from the mid-80s to the early 90s, is widely considered the \"Golden Age\" of Hip-Hop. It was a time of creative explosion, style diversification, and enormous growth in popularity. The genre matured, and artists began to explore a vast range of themes and sounds.",
-                golden_age_p2: "Groups like <strong>Run-DMC</strong> broke barriers, being the first to have a platinum-certified rap album and to appear on MTV. <strong>Public Enemy</strong> brought politically charged lyrics and an aggressive sound, becoming the voice of social consciousness. <strong>N.W.A.</strong> shocked the world with their raw and uncensored \"gangsta rap,\" while the <strong>Native Tongues</strong> collective (including A Tribe Called Quest, De La Soul, and Jungle Brothers) explored more positive and jazzy themes. The era also saw the rise of female icons like <strong>Queen Latifah</strong> and <strong>Salt-N-Pepa</strong>, who paved the way for future generations.",
+                elements_graffiti_desc: "The visual art of Hip-Hop, expressed through stylized letters, colorful murals, and \"tags\" in urban spaces. Graffiti transformed walls and trains into open-air galleries, being a form of claiming space and identity for artists.",
+                golden_age_title: "The Golden Age (1980s and Early 1990s)",
+                golden_age_p1: "This period, roughly spanning from the mid-1980s to the early 1990s, is widely considered the \"Golden Age\" of Hip-Hop. It was a time of creative explosion, diversification of styles, and enormous growth in popularity. The genre matured, and artists began to explore a vast range of themes and sounds.",
+                golden_age_p2: "Groups like <strong>Run-DMC</strong> broke barriers, being the first to have a platinum-certified rap album and appear on MTV. <strong>Public Enemy</strong> brought politically charged lyrics and an aggressive sound, becoming the voice of social consciousness. <strong>N.W.A.</strong> shocked the world with its raw and uncensored \"gangsta rap,\" while the <strong>Native Tongues</strong> collective (including A Tribe Called Quest, De La Soul, and Jungle Brothers) explored more positive and jazzy themes. The era also saw the rise of female icons like <strong>Queen Latifah</strong> and <strong>Salt-N-Pepa</strong>, who paved the way for future generations.",
                 golden_age_rundmc_strong: "Run-DMC",
                 golden_age_public_enemy_strong: "Public Enemy",
                 golden_age_nwa_strong: "N.W.A.",
@@ -574,10 +622,10 @@
                 golden_age_gallery_nwa_caption: "N.W.A.",
                 golden_age_gallery_queen_latifah_alt: "Queen Latifah",
                 golden_age_gallery_queen_latifah_caption: "Queen Latifah",
-                golden_age_p3: "The Golden Age solidified Hip-Hop as a global cultural force, paving the way for its continued evolution and dominance in the music industry.",
+                golden_age_p3: "The Golden Age solidified Hip-Hop as a global cultural force, paving the way for its continuous evolution and dominance in the music industry.",
                 s2000_title: "The 2000s: Expansion and Diversification",
-                s2000_p1: "The 2000s marked a new phase for Hip-Hop, consolidating it as the dominant force in global popular music. The turn of the millennium brought a wave of unprecedented sonic diversification and commercialization. \"Gangsta rap\" continued to be relevant, but new subgenres and styles emerged, expanding Hip-Hop's reach to even larger audiences.",
-                s2000_p2: "Artists like <strong>Eminem</strong>, <strong>Jay-Z</strong>, <strong>Nelly</strong>, <strong>50 Cent</strong>, <strong>OutKast</strong>, and <strong>Kanye West</strong> dominated the charts, each bringing their own sound and narrative. The US South, in particular, gained prominence with the rise of <strong>Crunk</strong> and <strong>Trap</strong>, which would become massive influences in the following decades. Music production became more experimental, incorporating elements of R&B, pop, and electronica. Hip-Hop in the 2000s not only sold millions of albums but also became a pillar of pop culture, undeniably influencing fashion, film, and television.",
+                s2000_p1: "The 2000s marked a new phase for Hip-Hop, consolidating its position as the dominant force in global popular music. The turn of the millennium brought a wave of unprecedented sonic diversification and commercialization. \"Gangsta rap\" maintained its relevance, but new subgenres and styles emerged, expanding Hip-Hop's reach to even wider audiences.",
+                s2000_p2: "Artists like <strong>Eminem</strong>, <strong>Jay-Z</strong>, <strong>Nelly</strong>, <strong>50 Cent</strong>, <strong>OutKast</strong>, and <strong>Kanye West</strong> dominated the charts, each bringing their own sound and narrative. The American South, in particular, gained prominence with the rise of <strong>Crunk</strong> and <strong>Trap</strong>, which would become massive influences in the following decades. Musical production became more experimental, incorporating elements of R&B, pop, and electronic music. Hip-Hop in the 2000s not only sold millions of albums but also became a pillar of pop culture, undeniably influencing fashion, cinema, and television.",
                 s2000_eminem_strong: "Eminem",
                 s2000_jayz_strong: "Jay-Z",
                 s2000_nelly_strong: "Nelly",
@@ -587,224 +635,186 @@
                 s2000_crunk_strong: "Crunk",
                 s2000_trap_strong: "Trap",
                 s2000_fig_eminem_alt: "Eminem",
-                s2000_fig_eminem_caption: "Eminem, one of the best-selling artists of the 2000s, expanding rap's reach.",
+                s2000_fig_eminem_caption: "Eminem, one of the best-selling artists of the 2000s, expanding the reach of rap.",
                 s2000_fig_kanye_alt: "Kanye West",
-                s2000_fig_kanye_caption: "Kanye West, a producer and MC who redefined Hip-Hop's sound in the decade.",
+                s2000_fig_kanye_caption: "Kanye West, a producer and MC who redefined the sound of Hip-Hop in the decade.",
                 s2000_audio_title: "2000s Anthem: Listen to a Classic",
                 audio_unsupported: "Your browser does not support the audio element.",
                 s2000_audio_desc: "Ja Rule, Fat Joe, Jadakiss - New York",
                 featured_media_title: "Featured Media: Videos and Music",
-                featured_media_intro: "Explore some of the videos and songs that marked Hip-Hop's journey. Dive into the sounds and visuals that defined generations and continue to inspire artists worldwide.",
-                featured_media_video_title: "Featured Video: Hip-Hop Documentary",
-                featured_media_video_iframe_title: "Example Hip-Hop Documentary Playlist",
-                featured_media_video_desc: "Watch a video above showing a little of the evolution of Hip-Hop",
+                featured_media_intro: "Explore some of the videos and music that have marked Hip-Hop's trajectory. Immerse yourself in the sounds and visuals that defined generations and continue to inspire artists worldwide.",
+                featured_media_video_title: "Featured Video: The Evolution of Hip-Hop",
+                featured_media_video_desc: "The Evolution of Hip-Hop",
                 featured_media_audio_title: "Essential Hip-Hop Playlist",
                 audio_unsupported_featured: "Your browser does not support the audio element.",
                 featured_media_audio_desc: "Example: SoundHelix Song 2 (Replace with your music or playlist)",
                 fashion_title: "Hip-Hop Fashion: Style and Identity",
-                fashion_p1: "Fashion is an intrinsic element of Hip-Hop culture, functioning as a powerful form of expressing identity, status, and affiliation. Since its origins, Hip-Hop style has evolved from sportswear and oversized clothing to a global influence pervading high fashion and streetwear.",
-                fashion_p2: "In the 80s, fashion was marked by velour tracksuits, iconic sneakers (like the Adidas Superstars popularized by Run-DMC), gold chains, and caps. In the 90s, baggy style, designer clothes like Tommy Hilfiger and Ralph Lauren, and Hip-Hop brands like FUBU and Sean John, dominated the scene. The 2000s brought \"bling-bling\" with extravagant jewelry, luxury clothing, and a more opulent aesthetic. Today, Hip-Hop fashion continues to be a trend driver, with artists collaborating with major fashion houses and influencing the global market with their authentic and innovative style.",
+                fashion_p1: "Fashion is an intrinsic element of Hip-Hop culture, serving as a powerful form of expressing identity, status, and affiliation. Since its origins, Hip-Hop style has evolved from sportswear and oversized clothing to a global influence that permeates haute couture and streetwear.",
+                fashion_p2: "In the 80s, fashion was marked by velour tracksuits, iconic sneakers (like the Adidas Superstar popularized by Run-DMC), gold chains, and caps. In the 90s, baggy style, designer clothes like Tommy Hilfiger and Ralph Lauren, and Hip-Hop brands like FUBU and Sean John dominated the scene. The 2000s brought \"bling-bling\" with extravagant jewelry, luxury clothing, and a more opulent aesthetic. Currently, Hip-Hop fashion continues to be a trendsetter, with artists collaborating with major fashion houses and influencing the global market with their authentic and innovative style.",
                 fashion_fig_old_school_alt: "Old School Hip-Hop Fashion",
-                fashion_fig_old_school_caption: "Iconic Old School style, with classic tracksuits and sneakers.",
+                fashion_fig_old_school_caption: "Iconic Old School style, with tracksuits and classic sneakers.",
                 fashion_fig_current_alt: "Current Hip-Hop Fashion",
-                fashion_fig_current_caption: "Contemporary Hip-Hop fashion, mixing streetwear and luxury.",
-                gangs_title: "Hip-Hop, Gangs, and Social Reality",
-                gangs_p1: "The relationship between Hip-Hop and gang culture is complex and often misunderstood. Born in an environment of adversity and urban violence, Hip-Hop partly emerged as an alternative to street life and gang affiliation, offering a creative outlet and a form of peaceful competition through art. However, the reality of gangs and their consequences also became a recurring theme in rap lyrics, especially in \"gangsta rap.\"",
-                gangs_p2: "Artists used their music to narrate experiences of violence, poverty, and marginalization, giving voice to a reality often ignored by mainstream society. Although the portrayal of gangs in Hip-Hop has generated controversy and criticism, it also served as a mirror to social conditions, a call to attention for the problems faced by youth in urban areas. Many Hip-Hop artists and leaders have actively worked to promote peace, education, and empowerment, using the culture as a tool to steer youth away from violence and build stronger communities.",
-                gangs_fig_street_culture_alt: "Street Culture and Hip-Hop",
-                gangs_fig_street_culture_caption: "Street culture, the birthplace of Hip-Hop, where art became an alternative to violence.",
-                gangs_fig_peace_alt: "Message of Peace in Hip-Hop",
-                gangs_fig_peace_caption: "Hip-Hop artists and activists promoting peace and unity in their communities.",
-                global_impact_title_section: "Global Impact and Continuous Evolution",
-                global_impact_p1: "Hip-Hop transcended the streets of the Bronx to become a global cultural phenomenon, influencing not only music but also fashion, language, cinema, art, and social activism across all continents. Its adaptability allowed it to merge with local cultures, creating vibrant scenes in countries like France, Japan, Brazil, South Korea, and many others.",
-                global_impact_p2: "Today, Hip-Hop continues to evolve, with new subgenres, artists, and digital platforms driving its innovation. From the rise of Trap and Drill to the popularity of conscious and experimental rap, the genre remains a dynamic and relevant force, reflecting and shaping contemporary cultural conversations. Its legacy is undeniable, and its future promises even more transformations and impact.",
-                brazil_title: "Hip-Hop in Brazil: Identity and Resistance",
-                brazil_p1: "Hip-Hop arrived in Brazil in the early 80s, mainly in São Paulo, and quickly became a powerful voice for urban peripheries. Pioneering groups like Racionais MC's, Thaíde & DJ Hum, and RZO adapted Hip-Hop elements to the Brazilian reality, addressing themes such as social inequality, racism, police violence, and life in favelas.",
-                brazil_p2: "National rap developed a unique identity, with hard-hitting lyrics and a strong connection to the country's social issues. Breakdance and graffiti also flourished, transforming public spaces and giving visibility to community talents. Today, Brazilian Hip-Hop is a diverse and consolidated scene, with artists from different generations and styles who continue to use the culture as a tool for expression, denunciation, and empowerment.",
+                fashion_fig_current_caption: "Hip-Hop fashion continues to evolve, influencing streetwear and haute couture.",
+                gangs_society_title: "Gangs and Society: Challenges and Resilience",
+                gangs_society_p1: "Since its roots in the Bronx, Hip-Hop has been intrinsically linked to the social and economic realities faced by marginalized communities, including the presence of gangs. However, the movement emerged as a powerful alternative to violence, offering a path to creative expression, recognition, and unity.",
+                gangs_society_p2: "Hip-Hop culture, in many respects, transformed the destructive energy of gang rivalries into peaceful artistic competitions, such as rap battles, breakdancing, and graffiti. Figures like Afrika Bambaataa, a former gang leader, channeled his influence to promote peace and community uplift through the Universal Zulu Nation. Although the depiction of street life and its complexities remains a theme in rap, the culture as a whole has been a force for resilience and social transformation, providing a voice and opportunities for many young people.",
+                gangs_society_fig_graffiti_caption: "Graffiti on a wall, expressing the complexity of the streets and art as a form of expression.",
+                gangs_society_fig_graffiti_alt: "Graffiti and Society",
+                global_impact_title: "Global Impact: Hip-Hop Around the World",
+                global_impact_p1: "Hip-Hop has transcended its origins in the Bronx to become a global cultural phenomenon. Its message of self-expression, resilience, and the pursuit of social justice has resonated in all parts of the world, adapting and blending with local cultures, creating unique subgenres and movements in each country.",
+                global_impact_p2: "From France to Japan, from South Africa to Brazil, Hip-Hop has become a platform for diverse voices, addressing local and global issues. Breaking has become an Olympic sport, and rap is often the most consumed musical genre in many countries. This global expansion is a testament to the universality of its themes and the adaptability of its elements, proving that Hip-Hop is truly a unifying and transformative force on a worldwide scale.",
+                global_impact_fig_global_caption: "Young people at a Hip-Hop demonstration in South Africa, showing the global reach of the movement.",
+                global_impact_fig_global_alt: "Global Hip-Hop",
+                brazil_title: "Hip-Hop in Brazil: A Voice from the Peripheries",
+                brazil_p1: "In Brazil, Hip-Hop arrived strongly in the 80s, taking deep root in the peripheries of large cities. Far from being a mere copy of the American movement, Brazilian Hip-Hop developed its own identity, becoming a potent tool for social denunciation, the valorization of Afro-Brazilian culture, and the struggle for rights and recognition.",
+                brazil_p2: "Artists like Racionais MC's, Gabriel o Pensador, Marcelo D2, and MV Bill became icons, addressing themes such as inequality, racism, police violence, and the reality of favelas in their lyrics. Brazilian graffiti, with its vibrant styles, and breakdancing, with its innovative crews, also established themselves as important artistic expressions. Hip-Hop in Brazil is more than music and dance; it is a movement of resistance, education, and social transformation that continues to give voice to millions and inspire change.",
+                brazil_fig_racionais_caption: "Racionais MC's, iconic Brazilian rap group, representing the voice of the peripheries.",
                 brazil_fig_racionais_alt: "Racionais MC's",
-                brazil_fig_racionais_caption: "Racionais MC's, one of the most influential groups in Brazilian Hip-Hop.",
-                brazil_fig_graffiti_alt: "Graffiti in Brazil",
-                brazil_fig_graffiti_caption: "Graffiti as artistic and social expression in Brazilian cities.",
-                legacy_title_section: "The Enduring Legacy of Hip-Hop",
-                legacy_p1: "More than a musical genre, Hip-Hop is a cultural movement that has redefined the global artistic and social landscape. Its legacy extends beyond chart success; it gave voice to the marginalized, challenged the status quo, promoted creativity, and built communities. Hip-Hop's influence can be seen in music, fashion, art, language, and activism worldwide.",
-                legacy_p2: "From its humble origins in the Bronx to global arenas, Hip-Hop has proven to be a resilient and adaptable force, continually reinventing itself while remaining true to its roots of authentic expression and empowerment. Its impact on past, present, and future generations is undeniable, solidifying its place as one of the most influential cultures in modern history.",
-                footer_copyright_prefix: "© ",
-                footer_copyright_suffix: " Hip-Hop History. All rights reserved.",
-                footer_developed_by: "Developed as a tribute to Hip-Hop culture.",
-                back_to_top_title: "Back to Top",
-                back_to_top_sr: "Back to Top"
+                brazil_fig_graffiti_caption: "Vibrant graffiti in São Paulo, a manifestation of street art in Brazil.",
+                brazil_fig_graffiti_alt: "Brazilian Graffiti",
+                legacy_title: "The Legacy and Future of Hip-Hop",
+                legacy_p1: "The legacy of Hip-Hop is immense and multifaceted. From a counter-cultural movement born in the streets of the Bronx, it has transformed into a dominant cultural and economic force, influencing music, fashion, art, language, and politics worldwide. More than entertainment, Hip-Hop has given voice to marginalized communities, promoted self-expression, and served as a platform for social change.",
+                legacy_p2: "The future of Hip-Hop promises to continue its evolution, with new genre fusions, technological innovations, and the rise of new voices from all parts of the globe. Its ability to adapt, absorb, and inspire the new ensures that its influence will continue to shape global culture for many decades to come. Hip-Hop is not just a history; it is an ongoing journey of unparalleled creativity, resilience, and cultural impact.",
+                legacy_fig_future_caption: "Hip-Hop continues to evolve and inspire new generations.",
+                legacy_fig_future_alt: "Future of Hip-Hop",
+                footer_text: "&copy; 2024 The History of Hip-Hop. All rights reserved.",
+                back_to_top_aria_label: "Back to top"
             }
         };
 
-        document.addEventListener('DOMContentLoaded', function () {
+        let currentLang = 'pt';
+
+        function applyTranslation() {
+            const elementsToTranslate = document.querySelectorAll('[data-translate-key]');
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    if (element.tagName === 'STRONG' || element.tagName === 'P') {
+                        element.innerHTML = translations[currentLang][key];
+                    } else if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[currentLang][key];
+                    } else if (element.tagName === 'OPTION') {
+                        element.textContent = translations[currentLang][key];
+                    } else if (element.tagName === 'IFRAME') {
+                        const titleKey = element.getAttribute('data-translate-title');
+                        if (titleKey && translations[currentLang][titleKey]) {
+                            element.title = translations[currentLang][titleKey];
+                        }
+                    } else if (element.tagName === 'IMG') {
+                        const altKey = element.getAttribute('data-translate-alt');
+                        if (altKey && translations[currentLang][altKey]) {
+                            element.alt = translations[currentLang][altKey];
+                        }
+                    } else if (element.hasAttribute('data-translate-aria-label')) {
+                        const ariaLabelKey = element.getAttribute('data-translate-aria-label');
+                        if (translations[currentLang][ariaLabelKey]) {
+                            element.setAttribute('aria-label', translations[currentLang][ariaLabelKey]);
+                        }
+                    } else if (element.hasAttribute('data-translate-caption-key')) {
+                        // For Fancybox captions
+                        const captionKey = element.getAttribute('data-translate-caption-key');
+                        if (translations[currentLang][captionKey]) {
+                            element.setAttribute('data-caption', translations[currentLang][captionKey]);
+                        }
+                    }
+                    else {
+                        element.textContent = translations[currentLang][key];
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langSwitcher = document.getElementById('language-switcher');
+            langSwitcher.addEventListener('change', (event) => {
+                currentLang = event.target.value;
+                applyTranslation();
+            });
+
+            // Initial translation based on selected language
+            currentLang = langSwitcher.value;
+            applyTranslation();
+
+            // Mobile menu toggle
             const menuToggle = document.querySelector('.menu-toggle');
-            const navMenu = document.querySelector('#navbar ul.hidden.md\\:flex');
-            const dropdownTriggers = document.querySelectorAll('#navbar .dropdown-trigger');
-            const languageSwitcher = document.getElementById('language-switcher');
-            const backToTopBtn = document.getElementById('backToTopBtn');
-            
-            // Função para aplicar traduções
-            function applyTranslations(lang) {
-                document.documentElement.lang = lang; // Atualiza o atributo lang do HTML
-                document.querySelectorAll('[data-translate-key]').forEach(element => {
-                    const key = element.getAttribute('data-translate-key');
-                    if (translations[lang] && translations[lang][key]) {
-                        // Se o elemento for <p> ou outro que possa conter <strong>, usamos innerHTML
-                        if (element.innerHTML.includes('<strong>') || element.innerHTML.includes('<em>')) {
-                             element.innerHTML = translations[lang][key];
-                        } else {
-                            element.innerHTML = translations[lang][key];
-                        }
-                    }
-                });
-                // Traduzir atributos específicos como 'alt', 'title', 'aria-label'
-                document.querySelectorAll('[data-translate-alt]').forEach(element => {
-                    const key = element.getAttribute('data-translate-alt');
-                    if (translations[lang] && translations[lang][key]) {
-                        element.setAttribute('alt', translations[lang][key]);
-                    }
-                });
-                document.querySelectorAll('[data-translate-title]').forEach(element => {
-                    const key = element.getAttribute('data-translate-title');
-                    if (translations[lang] && translations[lang][key]) {
-                        element.setAttribute('title', translations[lang][key]);
-                    }
-                });
-                 document.querySelectorAll('[data-translate-aria-label]').forEach(element => {
-                    const key = element.getAttribute('data-translate-aria-label');
-                    if (translations[lang] && translations[lang][key]) {
-                        element.setAttribute('aria-label', translations[lang][key]);
-                    }
-                });
+            const navbarUl = document.querySelector('#navbar ul');
 
-                // Atualiza o aria-label do botão do menu dependendo do idioma
-                const menuToggleAriaKey = menuToggle.getAttribute('data-translate-aria-label');
-                if (menuToggleAriaKey && translations[lang] && translations[lang][menuToggleAriaKey]) {
-                     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-                     if (isExpanded) {
-                        menuToggle.setAttribute('aria-label', lang === 'pt' ? "Fechar menu" : "Close menu");
-                     } else {
-                        menuToggle.setAttribute('aria-label', translations[lang][menuToggleAriaKey]);
-                     }
-                } else { // Fallback
-                    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-                    menuToggle.setAttribute('aria-label', isExpanded ? (lang === 'pt' ? "Fechar menu" : "Close menu") : (lang === 'pt' ? "Abrir menu" : "Open menu"));
-                }
-            }
+            menuToggle.addEventListener('click', () => {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+                navbarUl.classList.toggle('active');
 
-            // Event listener para o seletor de idioma
-            if (languageSwitcher) {
-                languageSwitcher.addEventListener('change', function(event) {
-                    const selectedLang = event.target.value;
-                    applyTranslations(selectedLang);
-                });
-            }
-            
-            applyTranslations(languageSwitcher.value);
-
-
-            // Lógica para o menu hamburger principal (mantida)
-            if (menuToggle && navMenu) {
-                menuToggle.addEventListener('click', function () {
-                    navMenu.classList.toggle('active');
-                    const isExpanded = navMenu.classList.contains('active');
-                    menuToggle.setAttribute('aria-expanded', String(isExpanded));
-                    
-                    const currentLang = languageSwitcher.value || 'pt';
-                    const menuToggleAriaDataKey = menuToggle.getAttribute('data-translate-aria-label');
-
-                    if(isExpanded){
-                        menuToggle.setAttribute('aria-label', currentLang === 'pt' ? "Fechar menu" : "Close menu");
+                // Toggle visibility for dropdown menus in mobile view
+                const dropdownMenus = document.querySelectorAll('.dropdown-container .dropdown-menu');
+                dropdownMenus.forEach(menu => {
+                    if (navbarUl.classList.contains('active')) {
+                        menu.style.display = 'flex'; // Show as flex column
                     } else {
-                        if(menuToggleAriaDataKey && translations[currentLang] && translations[currentLang][menuToggleAriaDataKey]){
-                             menuToggle.setAttribute('aria-label', translations[currentLang][menuToggleAriaDataKey]);
-                        } else {
-                             menuToggle.setAttribute('aria-label', currentLang === 'pt' ? "Abrir menu" : "Open menu");
-                        }
-                    }
-
-                    if (isExpanded) {
-                        dropdownTriggers.forEach(trigger => {
-                            const siblingMenu = trigger.nextElementSibling;
-                            if (siblingMenu && siblingMenu.classList.contains('dropdown-menu')) {
-                                siblingMenu.style.display = 'none';
-                                trigger.setAttribute('aria-expanded', 'false');
-                            }
-                        });
+                        menu.style.display = 'none'; // Hide
                     }
                 });
-            }
+            });
 
-            // Lógica para os dropdowns no mobile (mantida)
+            // Handle dropdown in mobile view (toggle on click)
+            const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
             dropdownTriggers.forEach(trigger => {
-                trigger.addEventListener('click', function(event) {
-                    if (event.target.tagName === 'A' && window.innerWidth >= 768) { /* No-op */ } 
-                    else { event.preventDefault(); }
-                    
-                    const associatedMenu = trigger.nextElementSibling;
-                    if (associatedMenu && associatedMenu.classList.contains('dropdown-menu')) {
-                        if (window.innerWidth < 768) {
-                            const isVisible = associatedMenu.style.display === 'flex';
-                            associatedMenu.style.display = isVisible ? 'none' : 'flex';
-                            associatedMenu.style.flexDirection = 'column';
-                            trigger.setAttribute('aria-expanded', String(!isVisible));
+                trigger.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) { // Only for mobile view
+                        const dropdownMenu = trigger.nextElementSibling;
+                        if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
+                            dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
                         }
                     }
                 });
             });
 
-            // Fecha o menu mobile se clicar fora (mantido e corrigido)
-            document.addEventListener('click', function(event) {
-                if (navMenu && navMenu.classList.contains('active')) {
-                    const isClickInsideNav = navMenu.contains(event.target);
-                    const isClickOnToggle = menuToggle.contains(event.target);
-                    const isLinkClick = event.target.tagName === 'A' && event.target.closest('#navbar ul');
+            // Back to top button functionality
+            const backToTopBtn = document.getElementById('backToTopBtn');
 
-                    if (!isClickInsideNav && !isClickOnToggle || (isLinkClick && !event.target.closest('.dropdown-container'))) {
-                        navMenu.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                        
-                        const currentLang = languageSwitcher.value || 'pt';
-                        const menuToggleAriaDataKey = menuToggle.getAttribute('data-translate-aria-label');
-                        if(menuToggleAriaDataKey && translations[currentLang] && translations[currentLang][menuToggleAriaDataKey]){
-                             menuToggle.setAttribute('aria-label', translations[currentLang][menuToggleAriaDataKey]);
-                        } else {
-                            menuToggle.setAttribute('aria-label', currentLang === 'pt' ? "Abrir menu" : "Open menu");
-                        }
-
-                        if (window.innerWidth < 768) {
-                            dropdownTriggers.forEach(trigger => {
-                                const siblingMenu = trigger.nextElementSibling;
-                                if (siblingMenu && siblingMenu.classList.contains('dropdown-menu')) { // Linha corrigida
-                                    siblingMenu.style.display = 'none';
-                                    trigger.setAttribute('aria-expanded', 'false');
-                                }
-                            });
-                        }
-                    }
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling down 300px
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
                 }
             });
 
-            // Script para o botão "Voltar ao Topo"
-            if (backToTopBtn) {
-                window.onscroll = function () {
-                    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                        backToTopBtn.classList.add('show');
-                    } else {
-                        backToTopBtn.classList.remove('show');
-                    }
-                };
-                backToTopBtn.addEventListener('click', function () {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
-            }
-
-            // Script para o ano atual no rodapé
-            const currentYearSpan = document.getElementById('currentYear');
-            if (currentYearSpan) {
-                 currentYearSpan.textContent = new Date().getFullYear();
-            }
-
+            });
+        });
+    </script>
+    <!-- Fancybox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+        // Initialize Fancybox
+        Fancybox.bind("[data-fancybox]", {
+            // Your custom options
+            Toolbar: {
+                display: {
+                    left: ["infobar"],
+                    middle: [],
+                    right: ["close"],
+                },
+            },
+            Image: {
+                zoom: false, // Disable image zoom on click
+            },
+            // For caption translation, we'll handle this dynamically using the data-translate-caption-key
+            // and the `caption` option, which can be a function.
+            caption: function (fancybox, slide) {
+                // Add a check to ensure slide.trigger exists before accessing its attributes
+                if (slide.trigger) {
+                    const captionKey = slide.trigger.getAttribute('data-translate-caption-key');
+                    if (captionKey && translations[currentLang] && translations[currentLang][captionKey]) {
+                        return translations[currentLang][captionKey];
+                    }
+                }
+                return slide.caption || ""; // Fallback to default caption or empty string
+            },
         });
     </script>
 </body>
